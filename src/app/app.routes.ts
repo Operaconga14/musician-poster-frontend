@@ -6,6 +6,9 @@ import { VacanciesComponent } from './components/feature-module/vacancies/vacanc
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { ServicesComponent } from './components/feature-module/services/services.component';
+import { BlogsComponent } from './components/feature-module/blogs/blogs.component';
+import { EventsComponent } from './components/feature-module/events/events.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +26,18 @@ export const routes: Routes = [
     {
         path: 'vacancies',
         component: VacanciesComponent
+    },
+    {
+        path: 'services',
+        component: ServicesComponent
+    },
+    {
+        path: 'blogs',
+        component: BlogsComponent
+    },
+    {
+        path: 'events',
+        component: EventsComponent
     },
     {
         path: 'auth/login',

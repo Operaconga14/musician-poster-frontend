@@ -27,6 +27,9 @@ export class HeaderComponent {
       { name: 'Gigs', url: 'gigs' },
       { name: 'Vacancies', url: 'vacancies' },
       { name: 'Market Place', url: 'market-place' },
+      { name: 'Services', url: 'services' },
+      { name: 'Blog', url: 'blogs' },
+      { name: 'Events', url: 'events' },
       { name: 'Login', url: `auth/login` },
       { name: 'SignUp', url: 'auth/register' }
     ]
