@@ -1,1 +1,48 @@
-<p>profile works!</p>
+<div class="row justify-content-between py-3 mx-0">
+    <div class="col-sm-12 col-lg-3 col-md-4 mb-2">
+        <div class="card shadow">
+            <img src="{{user_details.message.user.picture}}" class="card-img-top img-fluid border rounded-circle mt-2">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <strong>Name</strong>
+                    <p>{{user_details.message.user.name}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <strong>Username</strong>
+                    <p>{{user_details.message.user.username}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <strong>Role</strong>
+                    <p>{{user_details.message.user.role}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <strong>Email</strong>
+                    <p>{{user_details.message.user.email}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <strong>Joined</strong>
+                    <p>{{user_details.message.user.createdAt}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-9 col-md-8 mb-5">
+        <div class="card shadow">
+            <p class="card-title h5 px-3 py-3">
+                Update Form
+            </p>
+            <div class="card-body">
+                <form>
+                    <div class="d-flex">
+                        Form Field
+                    </div>
+                    <div class="text-end">
+                        <button class="btn btn-secondary text-white fw-bold">Update</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

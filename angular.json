@@ -20,7 +20,11 @@
           "skipTests": true
         },
         "@schematics/angular:guard": {
-          "skipTests": true
+          "skipTests": true,
+          "implements": [
+            "CanActivate"
+          ],
+          "project": "frontend"
         },
         "@schematics/angular:interceptor": {
           "skipTests": true
