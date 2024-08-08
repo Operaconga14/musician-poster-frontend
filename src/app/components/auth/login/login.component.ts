@@ -36,15 +36,28 @@ export class LoginComponent {
 
   login() {
     this.apiService.post('auth/login', this.login_form.value)
-      .then(async response => {
-        await this.authService.setCookie('token', response.data.token, 1)
-        console.log('Login Successful')
-        this.router.navigate(['me'])
-        const token = await this.authService.getCookie('token')
-        console.log('Token: ', token)
+      .then(response => {
+        const token = response.data.token;
+        this.authService.setLocalSorage(token); // Save token to local storage
+        console.log(token)
+        console.log('Login successful');
+        this.router.navigate(['me']); // Redirect to another route
       })
       .catch(error => {
-        console.error(error)
-      })
+        console.error('Login error', error);
+      });
   }
 }
+
+// this.apiService.post('auth/login', this.login_form.value)
+//       .then(async response => {
+//         await this.authService.setCookie('token', response.data.token, 1)
+//         console.log('Login Successful')
+//         this.router.navigate(['me'])
+//         const token = await this.authService.getCookie('token')
+//         console.log('Token: ', token)
+//       })
+//       .catch(error => {
+//         console.error(error)
+//       })
+//   }

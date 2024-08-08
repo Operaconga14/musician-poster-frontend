@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../core-module/services/auth.service';
 import { User } from "../../core-module/models/user.model";
 import { ApiService } from '../../core-module/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -19,21 +20,27 @@ export class ProfileComponent implements OnInit {
 
   private authService = inject(AuthService)
   private apiService = inject(ApiService)
+  private router = inject(Router)
 
   ngOnInit(): void {
     this.loadUserDetails()
   }
 
-  async loadUserDetails() {
-    const token = await this.authService.getCookie('token')
+  loadUserDetails() {
+    const token = this.authService.getLocaleStorage()
     if (token) {
-      await this.apiService.get('auth/me', token)
+      this.apiService.get('auth/me', token)
         .then(response => {
           this.user_details = response.data
           console.log('User Details', this.user_details)
           console.log('name: ', this.user_details.message.user.name)
         })
     }
+  }
+
+  logOut() {
+    this.authService.signOut()
+    this.router.navigate(['auth/login'])
   }
 
 }
