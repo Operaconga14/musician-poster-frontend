@@ -15,4 +15,8 @@ export class EventsService {
     //Add 'implements OnInit' to the class.
   }
 
+  public async getEventDetail(id: any) {
+    console.log("Event Id: ", id)
+  }
+
 }

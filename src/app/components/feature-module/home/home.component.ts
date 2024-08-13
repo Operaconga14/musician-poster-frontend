@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
   ]
 
   private apiService = inject(ApiService)
+  private eventService = inject(EventsService)
 
   constructor(config: NgbCarouselConfig) {
     // customize default values of carousels used by this component tree
@@ -83,4 +84,9 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching events:', error);
       })
   }
+
+  getEventId(id: any) {
+    this.eventService.getEventDetail(id)
+  }
+
 }

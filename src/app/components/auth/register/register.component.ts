@@ -41,7 +41,7 @@ export class RegisterComponent {
   }
 
   register() {
-    this.apiService.post('/user/auth/register', this.register_form.value)
+    this.apiService.post('user/auth/register', this.register_form.value)
       .then(response => {
         this.isSuccess = response.data
         this.message = response.data.message
