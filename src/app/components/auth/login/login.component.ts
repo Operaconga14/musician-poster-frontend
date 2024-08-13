@@ -6,11 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../../core-module/services/api.service';
 import { AuthService } from '../../core-module/services/auth.service';
 
-interface LoginResponse {
-  messag: string,
-  token: string
-}
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -21,6 +16,9 @@ interface LoginResponse {
 export class LoginComponent {
   api_url = environment.api_url
   login_form: FormGroup
+  isSuccess: any
+  isFailed: any
+  message: any
 
   private router = inject(Router)
   private apiService = inject(ApiService)
@@ -35,16 +33,26 @@ export class LoginComponent {
   }
 
   login() {
-    this.apiService.post('auth/login', this.login_form.value)
+    this.apiService.post('/user/auth/login', this.login_form.value)
       .then(response => {
         const token = response.data.token;
-        this.authService.setSessionStorage(token); // Save token to local storage
+        this.authService.setLocalSorage(token); // Save token to local storage
         console.log(token)
         console.log('Login successful');
-        this.router.navigate(['me']); // Redirect to another route
+        this.isSuccess = response.data
+        this.message = response.data.message
+        setTimeout(() => {
+          this.isSuccess = null
+          this.router.navigate(['me']); // Redirect to another route
+        }, 5000);
       })
       .catch(error => {
         console.error('Login error', error);
+        this.isFailed = error
+        this.message = error.message
+        setTimeout(() => {
+          this.isFailed = null
+        }, 4000);
       });
   }
 }
