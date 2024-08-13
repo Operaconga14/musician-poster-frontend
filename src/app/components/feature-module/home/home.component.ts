@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
+import { EventsService } from '../../core-module/services/events.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,8 @@ import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap
 export class HomeComponent {
   // images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/1920/500`)
   images = [`/img/gigs.jpg`, `/img/music-gadgets.jpg`, `/img/violing.jpg`]
+
+  allEvent: any
 
   gigs = [
     {
@@ -45,11 +48,19 @@ export class HomeComponent {
   ]
 
 
+  private eventService = inject(EventsService)
+
   constructor(config: NgbCarouselConfig) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
     config.pauseOnHover = false;
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.allEvent = this.eventService.getAllEvents()
   }
 }

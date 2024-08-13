@@ -186,7 +186,7 @@
     </div>
 </section>
 
-<!-- Gigs Session -->
+<!-- Service Session -->
 <section class="mt-5 mb-5 container-fluid pb-5">
     <h3 class="text-center fw-bolder">Services</h3>
     <p class="small text-center">These are the available services</p>
@@ -232,6 +232,54 @@
         </div>
     </div>
 </section>
+
+<!-- Events Session -->
+<section class="mt-5 mb-5 container-fluid pb-5">
+    <h3 class="text-center fw-bolder">Events</h3>
+    <p class="small text-center">These are the available events</p>
+    <div class="mt-4">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let event of allEvent">
+                <div class="card w-100">
+                    <div class="card-header p-0 m-0">
+                        <img [src]="images[0]" alt="" class="w-100">
+                    </div>
+                    <div class="card-body">
+                        <!-- location -->
+                        <div class="d-flex justify-content-between">
+                            <p class="small">Location: </p>
+                            <p class="small">{{event.title}}</p>
+                        </div>
+                        <!-- gig Genre -->
+                        <div class="d-flex justify-content-between">
+                            <p class="small">Service Type: </p>
+                            <p class="small">{{event.genre}}</p>
+                        </div>
+                        <!-- gig availability -->
+                        <div class="d-flex justify-content-between">
+                            <p class="small">Contact: </p>
+                            <p class="small">{{event.contact}}</p>
+                        </div>
+                        <!-- gig availability -->
+                        <div class="d-flex justify-content-between">
+                            <p class="small">Service availability: </p>
+                            <p class="small">{{event.availability}}</p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn-info btn text-white">
+                                Full Description
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 container text-center">
+            <a class="btn-info btn text-white text-center" [routerLink]="[ '/services']">More Services</a>
+        </div>
+    </div>
+</section>
+
 
 
 <!-- Gigs Session -->

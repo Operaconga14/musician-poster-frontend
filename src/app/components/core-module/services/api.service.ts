@@ -9,7 +9,7 @@ import axios, { AxiosResponse } from 'axios';
 export class ApiService {
 
 
-  server = environment.api_url
+  server = environment.cloud_api_url
   authenticationFailEvent = new EventEmitter
 
   private readonly CACHE_DURATION = 30 * 30 * 1000
@@ -18,7 +18,7 @@ export class ApiService {
 
 
   // http get method
-  get(path: any, params: any): Promise<AxiosResponse<any>> {
+  get(path: any): Promise<AxiosResponse<any>> {
     return axios.get(`${this.server}${path}`, {
       withCredentials: true
     })

@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   loadUserDetails() {
     const token = this.authService.getSessionStorage()
     if (token) {
-      this.apiService.get('auth/me', token)
+      this.apiService.get('auth/me')
         .then(response => {
           this.user_details = response.data
           console.log('User Details', this.user_details)
