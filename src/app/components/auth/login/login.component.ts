@@ -33,12 +33,12 @@ export class LoginComponent {
   }
 
   login() {
-    this.apiService.post('/user/auth/login', this.login_form.value)
+    this.apiService.post('user/auth/login', this.login_form.value)
       .then(response => {
         const token = response.data.token;
         this.authService.setLocalSorage(token); // Save token to local storage
-        console.log(token)
-        console.log('Login successful');
+        // console.log(token)
+        // console.log('Login successful');
         this.isSuccess = response.data
         this.message = response.data.message
         setTimeout(() => {
@@ -47,7 +47,7 @@ export class LoginComponent {
         }, 5000);
       })
       .catch(error => {
-        console.error('Login error', error);
+        // console.error('Login error', error);
         this.isFailed = error
         this.message = error.message
         setTimeout(() => {

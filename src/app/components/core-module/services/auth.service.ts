@@ -25,20 +25,20 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable()
   }
 
-  setCookie(token: any) {
-    this.cookieService.set('token', `${token}`, 3600000, '/', '', true, 'Lax');
-    setTimeout(() => {
-      if (this.cookieService.check('token')) {
-        console.log('Cookie Checked is true');
-      } else {
-        console.log('Cookie Checked is false');
-      }
-    }, 100); // Delay by 100ms
-  }
+  // setCookie(token: any) {
+  //   this.cookieService.set('token', `${token}`, 3600000, '/', '', true, 'Lax');
+  //   setTimeout(() => {
+  //     if (this.cookieService.check('token')) {
+  //       console.log('Cookie Checked is true');
+  //     } else {
+  //       console.log('Cookie Checked is false');
+  //     }
+  //   }, 100); // Delay by 100ms
+  // }
 
-  getCookie() {
+  // getCookie() {
 
-  }
+  // }
 
   setLocalSorage(token: any) {
     localStorage.setItem('token', token)
@@ -48,13 +48,13 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
-  setSessionStorage(token: any) {
-    return sessionStorage.setItem('token', token)
-  }
+  // setSessionStorage(token: any) {
+  //   return sessionStorage.setItem('token', token)
+  // }
 
-  getSessionStorage() {
-    return sessionStorage.getItem('token')
-  }
+  // getSessionStorage() {
+  //   return sessionStorage.getItem('token')
+  // }
 
   signOut() {
     return localStorage.removeItem('token')

@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environments';
 import axios, { AxiosResponse } from 'axios';
 
 
+axios.defaults.withCredentials = true
 @Injectable({
   providedIn: 'root'
 })
@@ -20,17 +21,21 @@ export class ApiService {
   // http get method
   get(path: any): Promise<AxiosResponse<any>> {
     return axios.get(`${this.server}${path}`, {
-      withCredentials: true
+      withCredentials: axios.defaults.withCredentials = true
     })
   }
 
   // http post method
   post(path: any, data: any): Promise<AxiosResponse<any>> {
-    return axios.post(`${this.server}${path}`, data, { withCredentials: true })
+    return axios.post(`${this.server}${path}`, data, {
+      withCredentials: axios.defaults.withCredentials = true
+    })
   }
 
   // update http method
   update(path: any, data: any): Promise<AxiosResponse<any>> {
-    return axios.put(`${this.server}${path}`, data, { withCredentials: true })
+    return axios.put(`${this.server}${path}`, data, {
+      withCredentials: axios.defaults.withCredentials = true
+    })
   }
 }

@@ -5,7 +5,9 @@ import { AuthService } from '../../core-module/services/auth.service';
 import { User } from "../../core-module/models/user.model";
 import { ApiService } from '../../core-module/services/api.service';
 import { Router } from '@angular/router';
+import axios from 'axios';
 
+axios.defaults.withCredentials = true
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -16,7 +18,6 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   user_details: any
   currentUser: User | any = null
-  api_url = environment.api_url
 
   private authService = inject(AuthService)
   private apiService = inject(ApiService)
@@ -27,13 +28,14 @@ export class ProfileComponent implements OnInit {
   }
 
   loadUserDetails() {
-    const token = this.authService.getSessionStorage()
+    const token = this.authService.getLocaleStorage()
     if (token) {
-      this.apiService.get('auth/me')
-        .then(response => {
-          this.user_details = response.data
-          console.log('User Details', this.user_details)
-          console.log('name: ', this.user_details.message.user.name)
+      this.apiService.get('user/me')
+        .then(async res => {
+          this.user_details = res.data.user
+        })
+        .catch(error => {
+          console.error('Error fetching user details:', error);
         })
     }
   }
