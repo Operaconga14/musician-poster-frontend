@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
   }
 
   async getAllEvents() {
-    this.apiService.get('event/events')
+    this.apiService.get('/event/events')
       .then(async events => {
         this.allEvents = events.data.events
         // console.log('These are Events', this.allEvents)

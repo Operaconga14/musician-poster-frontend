@@ -27,6 +27,20 @@
                                     <form [formGroup]="register_form" (submit)="register()">
                                         <fieldset>
                                             <p class="h1 fw-bold text-center mb-5 text-white">SignUp</p>
+                                            <!-- Alert Label -->
+                                            @if (isFailed && !isSuccess) {
+                                            <div class="bg-danger px-1 rounded">
+                                                <p class="text-white">{{message}}</p>
+                                            </div>
+                                            } @else if (isSuccess) {
+                                            <div class="bg-success py-1 px-2 rounded">
+                                                <p class="text-white">{{message}}</p>
+                                            </div>
+                                            } @else {
+                                            <div class="">
+                                                <p class=""></p>
+                                            </div>
+                                            }
                                             <div class="form-group">
                                                 <label for="name" class="fw-bold text-white">Full name</label>
                                                 <input formControlName="name" type="text"

@@ -18,7 +18,9 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   register_form: FormGroup
-  data: any
+  isSuccess: any
+  isFailed: any
+  message: any
 
   // http configuration
   private apiService = inject(ApiService)
@@ -27,7 +29,6 @@ export class RegisterComponent {
   private utilSercvice = inject(UtilService)
   private router = inject(Router)
   private http = inject(HttpClient)
-  api_url = environment.api_url
 
   constructor() {
     this.register_form = new FormGroup({
@@ -40,13 +41,23 @@ export class RegisterComponent {
   }
 
   register() {
-    this.apiService.post('auth/register', this.register_form.value)
+    this.apiService.post('/user/auth/register', this.register_form.value)
       .then(response => {
-        this.data = response.data
-        console.log(this.data)
+        this.isSuccess = response.data
+        this.message = response.data.message
+        // console.log(this.message)
+        setTimeout(() => {
+          this.isSuccess = null
+          this.router.navigate(['auth/login'])
+        }, 5000);
       })
       .catch(error => {
-        console.error(error)
+        // console.error(error)
+        this.isFailed = error
+        this.message = error.message
+        setTimeout(() => {
+          this.isFailed = null
+        }, 4000);
       })
   }
 
