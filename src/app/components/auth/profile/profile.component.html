@@ -2,6 +2,13 @@
     <div class="col-sm-12 col-lg-3 col-md-4 mb-2">
         <div class="card shadow">
             <img src="{{user_details.picture}}" class="card-img-top img-fluid border rounded-circle mt-2">
+            <!-- <form [formGroup]="profileImage"> -->
+            <div class="px-1">
+                <p class="text-center">Upload Profile image</p>
+                <input class="form-control" [formControl]="image" type="file"
+                    accept="image/*">
+            </div>
+            <!-- </form> -->
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <strong>Name</strong>
