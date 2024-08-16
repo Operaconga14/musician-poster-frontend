@@ -10,5 +10,5 @@ import { DefaultLayoutComponent } from "./components/layouts/default-layout/defa
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Musician Poster';
+  title = 'Mugivies';
 }

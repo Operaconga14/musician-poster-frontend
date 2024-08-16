@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  title = 'Musician Poster'
+  title = 'MUGIVIES'
 
   public nav_detail?: any
   active: any | undefined;
