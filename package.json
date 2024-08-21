@@ -22,7 +22,6 @@
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
     "@ng-bootstrap/ng-bootstrap": "^17.0.0",
-    "@nguniversal/express-engine": "^16.2.0",
     "@popperjs/core": "^2.11.8",
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
