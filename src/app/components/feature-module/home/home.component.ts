@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventsService } from '../../core-module/services/events.service';
-import { ApiService } from '../../core-module/services/api.service';
+import { ModalService } from '../../core-module/services/modal.service';
+import { EventModalComponent } from '../../modals/event-modal/event-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -48,8 +49,8 @@ export class HomeComponent implements OnInit {
     }
   ]
 
-  private apiService = inject(ApiService)
   private eventService = inject(EventsService)
+  private modalService = inject(ModalService)
 
   constructor(config: NgbCarouselConfig) {
     // customize default values of carousels used by this component tree
@@ -62,31 +63,16 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.getAllEvents()
+    this.eventService.getAllEvents()
+    this.eventService.allEventsList$.subscribe(events => {
+      this.allEvents = events
+    })
   }
 
-  async getAllEvents() {
-    this.apiService.get('event/events')
-      .then(async events => {
-        this.allEvents = events.data.events
-        // console.log('These are Events', this.allEvents)
-
-        this.allEvents.forEach((event:
-          {
-            id: any, title: any, description: any, username: any,
-            createdAt: any, updatedAt: any
-          }) => {
-          // console.log('Event Title:', event.title, 'Event Username',event.username);
-          return event
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching events:', error);
-      })
-  }
 
   getEventId(id: any) {
     this.eventService.getEventDetail(id)
+    this.modalService.openModal(EventModalComponent)
   }
 
 }

@@ -1,9 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
-import { environment } from '../../../environments/environments';
-import { HttpClientModule } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../core-module/services/api.service';
+import { AppToastService } from '../../core-module/services/app-toast.service';
 import { AuthService } from '../../core-module/services/auth.service';
 
 @Component({
@@ -14,15 +14,12 @@ import { AuthService } from '../../core-module/services/auth.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  api_url = environment.api_url
   login_form: FormGroup
-  isSuccess: any
-  isFailed: any
-  message: any
 
   private router = inject(Router)
   private apiService = inject(ApiService)
   private authService = inject(AuthService)
+  private toastService = inject(AppToastService)
 
 
   constructor() {
@@ -37,22 +34,16 @@ export class LoginComponent {
       .then(response => {
         const token = response.data.token;
         this.authService.setLocalSorage(token); // Save token to local storage
-        // console.log(token)
-        // console.log('Login successful');
-        this.isSuccess = response.data
-        this.message = response.data.message
+        this.toastService.show('Success!', `${response.data.message}`, 5000, 'bg-success text-white')
         setTimeout(() => {
-          this.isSuccess = null
           this.router.navigate(['me']); // Redirect to another route
-        }, 5000);
+        }, 1000);
       })
       .catch(error => {
-        // console.error('Login error', error);
-        this.isFailed = error
-        this.message = error.message
+        this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger | text-white')
         setTimeout(() => {
-          this.isFailed = null
-        }, 4000);
+          location.reload()
+        }, 1000);
       });
   }
 }

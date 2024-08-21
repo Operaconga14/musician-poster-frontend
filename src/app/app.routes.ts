@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/feature-module/home/home.component';
-import { MarketPlaceComponent } from './components/feature-module/market-place/market-place.component';
-import { GigsComponent } from './components/feature-module/gigs/gigs.component';
-import { VacanciesComponent } from './components/feature-module/vacancies/vacancies.component';
-import { ProfileComponent } from './components/auth/profile/profile.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { ProfileComponent } from './components/auth/profile/profile.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { ServicesComponent } from './components/feature-module/services/services.component';
 import { BlogsComponent } from './components/feature-module/blogs/blogs.component';
 import { EventsComponent } from './components/feature-module/events/events.component';
+import { GigsComponent } from './components/feature-module/gigs/gigs.component';
+import { HomeComponent } from './components/feature-module/home/home.component';
+import { MarketPlaceComponent } from './components/feature-module/market-place/market-place.component';
+import { ServicesComponent } from './components/feature-module/services/services.component';
+import { VacanciesComponent } from './components/feature-module/vacancies/vacancies.component';
 
 export const routes: Routes = [
     {
@@ -50,6 +50,8 @@ export const routes: Routes = [
     {
         path: 'me',
         component: ProfileComponent,
+        // canActivate: [
+        // ]
     },
     // {
     //     path: 'post-gigs',

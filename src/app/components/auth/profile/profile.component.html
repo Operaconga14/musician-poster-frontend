@@ -5,8 +5,7 @@
             <!-- <form [formGroup]="profileImage"> -->
             <div class="px-1">
                 <p class="text-center">Upload Profile image</p>
-                <input class="form-control" [formControl]="image" type="file"
-                    accept="image/*">
+                <input class="form-control" [formControl]="image" type="file" accept="image/*">
             </div>
             <!-- </form> -->
             <div class="card-body">
@@ -25,10 +24,6 @@
                 <div class="d-flex justify-content-between">
                     <strong>Email</strong>
                     <p>{{user_details.email}}</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <strong>Username</strong>
-                    <p>{{user_details.username}}</p>
                 </div>
                 <div class="justify-content-between">
                     <strong>Facebook</strong>
@@ -63,20 +58,151 @@
     </div>
     <div class="col-sm-12 col-lg-9 col-md-8 mb-5">
         <div class="card shadow">
-            <p class="card-title h5 px-3 py-3">
+            <p class="card-title fw-bolder h5 px-3 py-3">
                 Update Form
             </p>
             <div class="card-body">
-                <form>
-                    <div class="d-flex">
-                        Form Field
-                        <button class="btn btn-danger" (click)="logOut()">LogOut</button>
+                <form [formGroup]="userUpdate" (submit)="updateInfo()">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 sol-sm-12">
+                            <!-- Facbook -->
+                            <div class="form-group mb-3">
+                                <label for="facebook">Facbook Url</label>
+                                <input type="text" class="form-control mt-2"
+                                    placeholder="https://www.facebook.com/profile_url" formControlName="facebook">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 sol-sm-12">
+                            <!-- Instagram -->
+                            <div class="form-group mb-3">
+                                <label for="instagram">Instagram Url</label>
+                                <input type="text" class="form-control mt-2"
+                                    placeholder="https://www.instagram.com/profile_url" formControlName="instagram">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 sol-sm-12">
+                            <!-- Spotify -->
+                            <div class="form-group mb-3">
+                                <label for="spotify">Sportify Url</label>
+                                <input type="text" class="form-control mt-2"
+                                    placeholder="https://www.sportify.com/profile_url" formControlName="spotify">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 sol-sm-12">
+                            <!-- Tiktok -->
+                            <div class="form-group mb-3">
+                                <label for="titok">Titok Url</label>
+                                <input type="text" class="form-control mt-2" formControlName="tiktok"
+                                    placeholder="https://www.tiktok.com/profile_url">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 sol-sm-12">
+                            <!-- Youtube -->
+                            <div class="form-group mb-3">
+                                <label for="youtube">Youtube Url</label>
+                                <input type="text" class="form-control mt-2" formControlName="youtube"
+                                    placeholder="https://www.youtube.com/profile_url">
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-end">
+
+                    <div class="text-end mt-3">
                         <button class="btn btn-secondary text-white fw-bold">Update</button>
                     </div>
                 </form>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 sol-sm-12">
+                <div class="card shadow mt-3">
+                    <p class="card-title fw-bolder  h5 px-2 py-2">
+                        My Events
+                    </p>
+                    <div class="card-body p-1 m-1 d-flex justify-content-between">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <p>Hello</p>
+                                <p>How are you</p>
+                                <button class="ms-5 p-0">Action</button>
+                            </li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 sol-sm-12">
+                <div class="card shadow mt-3">
+                    <p class="card-title fw-bolder  h5 px-2 py-2">
+                        My Posts
+                    </p>
+                    <div class="card-body p-1 m-1 d-flex justify-content-between">
+                        <ul class="list-group">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 sol-sm-12">
+                <div class="card shadow mt-3">
+                    <p class="card-title fw-bolder  h5 px-2 py-2">
+                        My Gigs
+                    </p>
+                    <div class="card-body p-1 m-1 d-flex justify-content-between">
+                        <ul class="list-group">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 sol-sm-12">
+                <div class="card shadow mt-3">
+                    <p class="card-title fw-bolder  h5 px-2 py-2">
+                        My Services
+                    </p>
+                    <div class="card-body p-1 m-1 d-flex justify-content-between">
+                        <ul class="list-group">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mt-3">
+            <p class="card-title fw-bolder  h5 px-2 py-2">
+                My Gadgets
+            </p>
+            <div class="card-body p-1 m-1 d-flex justify-content-between">
+                <ul class="list-group">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card shadow mt-3">
+            <p class="card-title fw-bolder text-danger h5 px-3 py-3">
+                Danger Zone
+            </p>
+            <div class="card-body d-flex justify-content-between">
+                <button class="btn btn-danger" (click)="logOut()">LogOut</button>
+                <button class="btn btn-danger">Delete Account</button>
             </div>
         </div>
     </div>

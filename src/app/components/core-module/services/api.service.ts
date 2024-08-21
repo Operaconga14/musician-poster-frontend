@@ -1,9 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { environment } from '../../../environments/environments';
 import axios, { AxiosResponse } from 'axios';
+import { environment } from '../../../environments/environments';
 
 
-axios.defaults.withCredentials = true
 @Injectable({
   providedIn: 'root'
 })
@@ -15,27 +14,29 @@ export class ApiService {
 
   private readonly CACHE_DURATION = 30 * 30 * 1000
 
-  constructor() { }
+  constructor() {
+    axios.defaults.withCredentials = true
+  }
 
 
   // http get method
   get(path: any): Promise<AxiosResponse<any>> {
     return axios.get(`${this.server}${path}`, {
-      withCredentials: axios.defaults.withCredentials = true
+      withCredentials: true
     })
   }
 
   // http post method
   post(path: any, data: any): Promise<AxiosResponse<any>> {
     return axios.post(`${this.server}${path}`, data, {
-      withCredentials: axios.defaults.withCredentials = true
+      withCredentials: true
     })
   }
 
   // update http method
   update(path: any, data: any): Promise<AxiosResponse<any>> {
     return axios.put(`${this.server}${path}`, data, {
-      withCredentials: axios.defaults.withCredentials = true
+      withCredentials: true
     })
   }
 }

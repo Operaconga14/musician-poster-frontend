@@ -30,8 +30,9 @@ export class HeaderComponent {
       { name: 'Services', url: 'services' },
       { name: 'Blog', url: 'blogs' },
       { name: 'Events', url: 'events' },
+      { name: 'My Dashboard', url: 'me' },
       { name: 'Login', url: `auth/login` },
-      { name: 'SignUp', url: 'auth/register' }
+      { name: 'SignUp', url: 'auth/register' },
     ]
   }
 }

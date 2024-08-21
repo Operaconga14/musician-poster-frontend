@@ -4,14 +4,12 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree => {
-  return inject(AuthService).hasLoggedIn()
+  const authService = inject(AuthService)
+  const router = inject(Router)
+
+  return authService.hasLoggedIn()
     ? true
-    : inject(Router).createUrlTree(['auth/login'],
-      {
-        queryParams: {
-          returnUrl: state.url
-        }
-      }
-    )
-  return true;
+    : router.createUrlTree(['auth/login'], {
+      queryParams: { returnUrl: state.url }
+    })
 };
