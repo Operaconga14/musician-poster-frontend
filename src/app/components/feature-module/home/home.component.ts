@@ -15,7 +15,7 @@ import { EventModalComponent } from '../../modals/event-modal/event-modal.compon
 })
 export class HomeComponent implements OnInit {
   // images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/1920/500`)
-  images = [`/img/gigs.jpg`, `/img/music-gadgets.jpg`, `/img/violing.jpg`]
+  images = [`https://res.cloudinary.com/defmlxshw/image/upload/v1724489604/music-gadgets_ddj6ka.jpg`, `https://res.cloudinary.com/defmlxshw/image/upload/v1724489603/gigs_pj7ttq.jpg`, `https://res.cloudinary.com/defmlxshw/image/upload/v1724489599/violing_wvdcyd.jpg`]
 
   allEvents: any
 
