@@ -1,11 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { EventsService } from '../../core-module/services/events.service';
 import { ModalService } from '../../core-module/services/modal.service';
 
 @Component({
   selector: 'app-event-modal',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, CommonModule],
   templateUrl: './event-modal.component.html',
   styleUrl: './event-modal.component.scss'
 })
@@ -23,6 +25,7 @@ export class EventModalComponent {
     this.eventService.eventDetail$.subscribe(details => {
       this.eventDetails = details
       console.log('Event Details: ', details)
+      console.log("Gadget Image", details.image)
     })
   }
 

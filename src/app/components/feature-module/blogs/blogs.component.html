@@ -1,8 +1,52 @@
-<p>blogs works!</p>
-
-<div class="container text-center border border-1 w-50">
-    <a href="https://waufooke.com/4/7904436" target="_blank" rel="noopener noreferrer">
-        <p class="small">Ads Advert</p>
-        <img src="https://waufooke.com/4/7904436" alt="Ads Advert">
-    </a>
-</div>
+<!-- Posts Session -->
+<section class="mt-5 mb-5 container-fluid pb-5">
+    <h3 class="text-center fw-bolder">Posts</h3>
+    <p class="small text-center">These are the available posts</p>
+    @if (!allPosts || allPosts <= 0) { <h1 class="text-center fw-bolder">No new post Yet check back later</h1>
+        }
+        <div class="mt-4">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let post of allPosts">
+                    <div class="card w-100">
+                        <div class="card-header p-0 m-0 rounded">
+                            <a [href]="post.image">
+                                <img src="{{post.image}}" alt="{{post.title || post.image}}" class="w-100 rounded">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <!-- location -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Post Title: </p>
+                                <p class="small fw-bold">{{post.title}}</p>
+                            </div>
+                            <!-- gig Genre -->
+                            <div class="mt-0">
+                                <p class="small mb-1 fw-bolder">Description: </p>
+                                <p class="small fw-bold">{{post.description}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Posted By: </p>
+                                <p class="small fw-bold">{{post.postedBy}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Date Posted: </p>
+                                <p class="small fw-bold">{{post.createdAt}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Date Updated: </p>
+                                <p class="small fw-bold">{{post.updatedAt}}</p>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn-info btn text-white">
+                                    Full Description
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

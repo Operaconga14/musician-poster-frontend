@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { ContributorsService } from '../../core-module/services/contributors.service';
 import { EventsService } from '../../core-module/services/events.service';
 import { ModalService } from '../../core-module/services/modal.service';
 import { EventModalComponent } from '../../modals/event-modal/event-modal.component';
@@ -15,9 +16,16 @@ import { EventModalComponent } from '../../modals/event-modal/event-modal.compon
 })
 export class HomeComponent implements OnInit {
   // images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/1920/500`)
-  images = [`https://res.cloudinary.com/defmlxshw/image/upload/v1724489604/music-gadgets_ddj6ka.jpg`, `https://res.cloudinary.com/defmlxshw/image/upload/v1724489603/gigs_pj7ttq.jpg`, `https://res.cloudinary.com/defmlxshw/image/upload/v1724489599/violing_wvdcyd.jpg`]
+  images = [
+    `https://res.cloudinary.com/defmlxshw/image/upload/banner9_htcdkg.jpg`,
+    `https://res.cloudinary.com/defmlxshw/image/upload/banner8_n5v1g2.jpg`,
+    `https://res.cloudinary.com/defmlxshw/image/upload/banner6_nmdyff.jpg`,
+    `https://res.cloudinary.com/defmlxshw/image/upload/banner1_otootu.jpg`
+  ]
 
   allEvents: any
+  newEvents: any
+  contributors: any
 
   gigs = [
     {
@@ -51,6 +59,7 @@ export class HomeComponent implements OnInit {
 
   private eventService = inject(EventsService)
   private modalService = inject(ModalService)
+  private contributorService = inject(ContributorsService)
 
   constructor(config: NgbCarouselConfig) {
     // customize default values of carousels used by this component tree
@@ -63,10 +72,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.eventService.getAllEvents()
-    this.eventService.allEventsList$.subscribe(events => {
-      this.allEvents = events
+    this.eventService.getnewEvents()
+    this.eventService.newEventsList$.subscribe(newevents => {
+      this.newEvents = newevents
     })
+    this.contributors = this.contributorService.contributors
+    console.log('Our contributors', this.contributors)
   }
 
 

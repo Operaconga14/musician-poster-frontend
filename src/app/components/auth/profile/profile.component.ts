@@ -54,10 +54,11 @@ export class ProfileComponent implements OnInit {
     if (token) {
       this.apiService.get('user/me')
         .then(async res => {
+          console.log('User details', res.data)
           this.user_details = res.data.user
         })
         .catch(error => {
-          this.toastService.error('Error!', `${error.response.data.message}`, 5000)
+          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white')
           console.error('Error fetching user details:', error);
         })
     }

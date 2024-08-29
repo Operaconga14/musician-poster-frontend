@@ -1,1 +1,53 @@
-<p>services works!</p>
+<!-- Service Session -->
+<section class="mt-5 mb-5 container-fluid pb-5">
+    <h3 class="text-center fw-bolder">Services</h3>
+    <p class="small text-center">These are the available services</p>
+    @if (!allServices || allServices <= 0) { <h1 class="text-center fw-bolder">No new services Yet check back later</h1>
+        }
+        <div class="mt-4">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let service of allServices">
+                    <div class="card w-100">
+                        <div class="card-header p-0 m-0 rounded">
+                            <a [href]="service.image">
+                                <img src="{{service.image}}" alt="{{service.name || service.image}}"
+                                    class="w-100 rounded">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <!-- location -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Service Name: </p>
+                                <p class="small fw-bold">{{service.name}}</p>
+                            </div>
+                            <!-- gig Genre -->
+                            <div class="mt-0">
+                                <p class="small mb-1 fw-bolder">Description: </p>
+                                <p class="small fw-bold">{{service.description}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Posted By: </p>
+                                <p class="small fw-bold">{{service.postedBy}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Date Posted: </p>
+                                <p class="small fw-bold">{{service.createdAt}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Date Updated: </p>
+                                <p class="small fw-bold">{{service.updatedAt}}</p>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn-info btn text-white">
+                                    Full Description
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

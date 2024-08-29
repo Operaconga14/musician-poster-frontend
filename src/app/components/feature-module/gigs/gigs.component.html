@@ -1,1 +1,51 @@
-<p>gigs works!</p>
+<section class="mt-5 mb-5 container-fluid pb-5">
+    <h3 class="text-center fw-bolder">Gigs</h3>
+    <p class="small text-center">These are the available gigs</p>
+    @if (!allGigs || allGigs <= 0) { <h1 class="text-center fw-bolder">No new gigs Yet check back later</h1>
+        }
+        <div class="mt-4">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let gig of allGigs">
+                    <div class="card w-100">
+                        <div class="card-header p-0 m-0 rounded">
+                            <a [href]="gig.image">
+                                <img src="{{gig.image}}" alt="{{gig.title || gig.image}}" class="w-100 rounded">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <!-- location -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Gig Title: </p>
+                                <p class="small fw-bold">{{gig.title}}</p>
+                            </div>
+                            <!-- gig Genre -->
+                            <div class="mt-0">
+                                <p class="small mb-1 fw-bolder">Description: </p>
+                                <p class="small fw-bold">{{gig.description}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Posted By: </p>
+                                <p class="small fw-bold">{{gig.postedBy}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Date Posted: </p>
+                                <p class="small fw-bold">{{gig.createdAt}}</p>
+                            </div>
+                            <!-- gig availability -->
+                            <div class="d-flex justify-content-between">
+                                <p class="small fw-bolder">Date Updated: </p>
+                                <p class="small fw-bold">{{gig.updatedAt}}</p>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn-info btn text-white">
+                                    Full Description
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

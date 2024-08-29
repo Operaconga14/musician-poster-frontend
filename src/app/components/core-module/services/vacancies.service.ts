@@ -5,9 +5,9 @@ import { ApiService } from './api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PostsService {
+export class VacanciesService {
 
-
+  constructor() { }
   private apiService = inject(ApiService)
 
   private eventDetailSource = new BehaviorSubject<any>(null);

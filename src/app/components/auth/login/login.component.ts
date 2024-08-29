@@ -37,7 +37,7 @@ export class LoginComponent {
         this.toastService.show('Success!', `${response.data.message}`, 5000, 'bg-success text-white')
         setTimeout(() => {
           this.router.navigate(['me']); // Redirect to another route
-        }, 1000);
+        }, 4000);
       })
       .catch(error => {
         this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger | text-white')
