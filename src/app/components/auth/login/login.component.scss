@@ -1,33 +1,7 @@
-.bg-image {
-    background-image: url('/img/music-gadgets.jpg');
-    background-size: cover;
-    height: 100vh;
-    min-height: 90vh;
-
+.font-style {
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.blur-image {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.678);
-    height: inherit;
-}
-
-.form-container {}
-
-.row-container {
-    // margin-top: 100px !important;
-    margin-bottom: 5px !important;
-}
-
-.card-bg-image {
-    background-image: url('/img/gigs.jpg');
-    background-size: cover;
-}
-
-.card-blur-image {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.212);
-    height: inherit;
+.form-rounded {
+    border-radius: 80px !important;
 }

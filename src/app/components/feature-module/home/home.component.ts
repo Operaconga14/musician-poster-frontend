@@ -5,6 +5,7 @@ import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap
 import { ContributorsService } from '../../core-module/services/contributors.service';
 import { EventsService } from '../../core-module/services/events.service';
 import { ModalService } from '../../core-module/services/modal.service';
+import { ThemeService } from '../../core-module/services/theme.service';
 import { EventModalComponent } from '../../modals/event-modal/event-modal.component';
 
 @Component({
@@ -15,7 +16,9 @@ import { EventModalComponent } from '../../modals/event-modal/event-modal.compon
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  // images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/1920/500`)
+  isDarkTheme: boolean = false
+  showNavigationArrow = false
+
   images = [
     `https://res.cloudinary.com/defmlxshw/image/upload/banner9_htcdkg.jpg`,
     `https://res.cloudinary.com/defmlxshw/image/upload/banner8_n5v1g2.jpg`,
@@ -60,6 +63,7 @@ export class HomeComponent implements OnInit {
   private eventService = inject(EventsService)
   private modalService = inject(ModalService)
   private contributorService = inject(ContributorsService)
+  private themeService = inject(ThemeService)
 
   constructor(config: NgbCarouselConfig) {
     // customize default values of carousels used by this component tree
@@ -78,6 +82,7 @@ export class HomeComponent implements OnInit {
     })
     this.contributors = this.contributorService.contributors
     console.log('Our contributors', this.contributors)
+    this.themeService.currentTheme.subscribe(theme => this.isDarkTheme = theme)
   }
 
 

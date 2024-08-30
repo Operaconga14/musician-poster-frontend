@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ThemeToggleButtonComponent } from "../theme-toggle-button/theme-toggle-button.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ThemeToggleButtonComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

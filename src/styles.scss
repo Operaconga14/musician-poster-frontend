@@ -4,6 +4,63 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
+// theme toggling
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-theme {
+    background-color: #1b1b1b;
+    color: #fff;
+
+    .card {
+        background-color: #1b1b1b;
+        border-color: #2b2b2b;
+        color: whitesmoke;
+    }
+
+    ngb-carousel,
+    .ngbSlide {
+        background-color: #1b1b1b;
+    }
+
+    ngb-carousel.button {
+        width: 2px;
+    }
+
+    button,
+    .btn {
+        background-color: gray;
+        color: whitesmoke;
+        border-color: inherit;
+    }
+
+    input,
+    select {
+        background-color: transparent;
+        color: whitesmoke;
+    }
+}
+
+.light-theme {
+    background-color: whitesmoke;
+    color: #000;
+
+    input,
+    select {
+        background-color: transparent;
+        color: black;
+    }
+
+    button,
+    .btn {
+        background-color: #1b1b1b;
+        color: whitesmoke;
+        border-color: inherit;
+    }
+
+}
+
 .toast-container {
     z-index: 2;
     right: 1px;

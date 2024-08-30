@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environments';
 export class ApiService {
 
 
-  server = environment.cloud_api_url
+  server = environment.api_url
   authenticationFailEvent = new EventEmitter
 
   private readonly CACHE_DURATION = 30 * 30 * 1000

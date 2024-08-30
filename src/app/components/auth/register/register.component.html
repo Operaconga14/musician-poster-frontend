@@ -1,84 +1,73 @@
-<div class="bg-image">
-    <div class="container-fluid blur-image">
-        <div class="container text-center text-white pt-5 pb-5">
-
-            <div class="row mt-5 p-0 border border-2 rounded">
-                <div class="col-sm-12 col-md-6 col-lg-6 p-0 m-0">
-                    <p class="mt-3 h4 fw-bolder">Benefits of Registration</p>
-                    <ul class="text-start mt-3">
-                        <li class="fw-bold">Posting of Gigs</li>
-                        <li class="fw-bold">Posting Videos with your social media links (Youtube, Instagram e.t.c)</li>
-                        <li class="fw-bold">Posting of Vacancies</li>
-                        <li class="fw-bold">Posting of Services</li>
-                        <li class="fw-bold">And many more features to come...</li>
-                    </ul>
-
-                    <div class="mt-5 ms-3 pt-5">
-                        <div class="d-flex">Already have an account? login<a class="ms-1 text-decoration-none"
-                                [routerLink]="[ '/auth/login']">here</a>.</div>
+<div class="m-0 container-fluid text-center my-3 py-5 px-auto font-style">
+    <div class="container py-4 px-2">
+        <div class="card shadow rounded m-0 p-0">
+            <div class="card-body">
+                <div class="mt-3">
+                    <div class="crad-header">
+                        <p class="h2 fw-bold font-style">Regisration Form</p>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-6 p-0 m-0 text-start">
-                    <!-- form -->
-                    <div class="form-container">
-                        <div class="card card-bg-image p-0 m-0 border border-0 rounded">
-                            <div class="card-blur-image p-0 m-0">
-                                <div class="card-body ">
-                                    <form [formGroup]="register_form" (submit)="register()">
-                                        <fieldset>
-                                            <p class="h1 fw-bold text-center mb-5 text-white">SignUp</p>
-                                            <div class="form-group">
-                                                <label for="name" class="fw-bold text-white">Full name</label>
-                                                <input formControlName="name" type="text"
-                                                    class="form-control bg-transparent mt-1 text-white">
-                                            </div>
+                    <div class="form-contanier px-2">
+                        <div class="help">
+                            <button class="btn btn-transparent"><i class="bi bi-info"></i></button>
+                        </div>
+                        <form>
+                            <div class="row mt-5">
+                                <!-- First colunm -->
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <!-- name field -->
+                                    <div class="form-group mb-2">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" class="form-control form-rounded bg-transparent">
+                                    </div>
 
-                                            <div class="form-group mt-3">
-                                                <label for="email" class="fw-bold text-white">Email Address</label>
-                                                <input formControlName="email" type="email"
-                                                    class="form-control bg-transparent mt-1 text-white">
-                                            </div>
+                                    <!-- name field -->
+                                    <div class="form-group mb-2">
+                                        <label for="name">Email</label>
+                                        <input type="text" class="form-control form-rounded bg-transparent">
+                                    </div>
+                                </div>
 
-                                            <div class="form-group mt-3">
-                                                <label for="text" class="fw-bold text-white">Role</label>
-                                                <select name="role" class="form-control bg-transparent mt-1 text-white"
-                                                    formControlName="role" id="role">
-                                                    <option class="bg-dark" value="" disabled>Select Options</option>
-                                                    <option class="bg-dark" value="Instrumentalist">Instrumentalist
-                                                    </option>
-                                                    <option class="bg-dark" value="Song Writer">Song Writer</option>
-                                                    <option class="bg-dark" value="Vocalist">Vocalist</option>
-                                                    <option class="bg-dark" value="Music Director">Music Director
-                                                    </option>
-                                                    <option class="bg-dark" value="Sound Engineer">Sound Engineer
-                                                    </option>
-                                                    <option class="bg-dark" value="Musical Gadget Dealer">Musical Gadget
-                                                        Dealer</option>
-                                                </select>
-                                            </div>
+                                <!-- Second colunm -->
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <!-- name field -->
+                                    <div class="form-group mb-2">
+                                        <label for="name">Nickname / Username</label>
+                                        <input type="text" class="form-control form-rounded bg-transparent">
+                                    </div>
+                                    <!-- name field -->
+                                    <div class="form-group mb-2">
+                                        <label for="name">Role</label>
+                                        <select name="role" class="form-control form-rounded bg-transparent"
+                                            formControlName="role" id="role">
+                                            <option class="" value="" disabled>Select Options</option>
+                                            <option class="" value="Instrumentalist">Instrumentalist
+                                            </option>
+                                            <option class="" value="Song Writer">Song Writer</option>
+                                            <option class="" value="Vocalist">Vocalist</option>
+                                            <option class="" value="Music Director">Music Director
+                                            </option>
+                                            <option class="" value="Sound Engineer">Sound Engineer
+                                            </option>
+                                            <option class="" value="Musical Gadget Dealer">Musical Gadget
+                                                Dealer</option>
+                                        </select>
+                                    </div>
 
-                                            <div class="form-group mt-3">
-                                                <label for="username"
-                                                    class="fw-bold text-white">Nickname/Username</label>
-                                                <input type="text" formControlName="username"
-                                                    class="form-control bg-transparent mt-1 text-white">
-                                            </div>
-
-                                            <div class="form-group mt-3">
-                                                <label for="password" class="fw-bold text-white">Password</label>
-                                                <input type="password" formControlName="password"
-                                                    class="form-control bg-transparent mt-1 text-white">
-                                            </div>
-
-                                            <div class="text-center mt-4">
-                                                <button
-                                                    class="btn-outline-transparent btn border border-white text-white">SignUp</button>
-                                            </div>
-                                        </fieldset>
-                                    </form>
+                                </div>
+                                <!-- name field -->
+                                <div class="form-group mb-2 mx-auto">
+                                    <label for="name">Password</label>
+                                    <input type="text" class="form-control form-rounded bg-transparent">
                                 </div>
                             </div>
-                        </div>
+                            <div class="button mt-3">
+                                <button class="form-rounded btn-secondary btn">Register</button>
+                            </div>
+                            <div class="already a user mt-3">
+                                <p class="">Already have an account? login<a class="ms-1 text-decoration-none"
+                                        [routerLink]="[ '/auth/login']">here</a>.</p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
