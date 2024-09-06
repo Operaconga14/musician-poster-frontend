@@ -31,6 +31,7 @@ export class HeaderComponent {
       { name: 'Services', url: 'services' },
       { name: 'Blog', url: 'blogs' },
       { name: 'Events', url: 'events' },
+      { name: 'Contibutors', url: 'contributors' },
       { name: 'My Dashboard', url: 'me' },
       { name: 'Login', url: `auth/login` },
       { name: 'SignUp', url: 'auth/register' },

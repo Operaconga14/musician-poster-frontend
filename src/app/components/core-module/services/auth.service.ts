@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   signOut() {
-    return localStorage.removeItem('token')
+    localStorage.removeItem('token')
     this.loggedin.next(false)
   }
 

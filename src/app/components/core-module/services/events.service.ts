@@ -9,6 +9,8 @@ export class EventsService {
 
   private apiService = inject(ApiService)
 
+  error: any
+
   private eventDetailSource = new BehaviorSubject<any>(null);
   private allEventsSource = new BehaviorSubject<any[]>([]);
   private newEventsSource = new BehaviorSubject<any[]>([]);
@@ -16,8 +18,6 @@ export class EventsService {
   allEventsList$ = this.allEventsSource.asObservable();
   newEventsList$ = this.newEventsSource.asObservable();
 
-  // allEvents: any;
-  // newevents: any
 
   setEventDetail(eventDetail: any) {
     this.eventDetailSource.next(eventDetail);
@@ -36,10 +36,9 @@ export class EventsService {
       const response = await this.apiService.get(`event/event/${id}`)
       if (response.data && response.data.event) {
         this.setEventDetail(response.data.event)
-        // Trigger modal opening here
       }
     } catch (error) {
-
+      this.error = error
     }
   }
 
@@ -50,7 +49,7 @@ export class EventsService {
         this.setNewEvent(newEvents.data.event)
       }
     } catch (error) {
-
+      this.error = error
     }
   }
 
@@ -61,7 +60,7 @@ export class EventsService {
         this.setAllEvents(allevents.data.events)
       }
     } catch (error) {
-
+      this.error = error
     }
   }
 

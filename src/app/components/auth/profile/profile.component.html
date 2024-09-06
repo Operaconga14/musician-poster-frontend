@@ -1,209 +1,225 @@
-<div class="row justify-content-between py-3 mx-0">
-    <div class="col-sm-12 col-lg-3 col-md-4 mb-2">
-        <div class="card shadow">
-            <img src="{{user_details.picture}}" class="card-img-top img-fluid border rounded-circle mt-2">
-            <!-- <form [formGroup]="profileImage"> -->
-            <div class="px-1">
-                <p class="text-center">Upload Profile image</p>
-                <input class="form-control" [formControl]="image" type="file" accept="image/*">
-            </div>
-            <!-- </form> -->
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <strong>Name</strong>
-                    <p>{{user_details.name}}</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <strong>Username</strong>
-                    <p>{{user_details.username}}</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <strong>Role</strong>
-                    <p>{{user_details.role}}</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <strong>Email</strong>
-                    <p>{{user_details.email}}</p>
-                </div>
-                <div class="justify-content-between">
-                    <strong>Facebook</strong>
-                    <p>{{user_details.facebook}}</p>
-                </div>
-                <div class="justify-content-between">
-                    <strong>Instagram</strong>
-                    <p>{{user_details.instagram}}</p>
-                </div>
-                <div class="justify-content-between">
-                    <strong>Spotify</strong>
-                    <p>{{user_details.spotify}}</p>
-                </div>
-                <div class="justify-content-between">
-                    <strong>Titok</strong>
-                    <p>{{user_details.titok}}</p>
-                </div>
-                <div class="justify-content-between">
-                    <strong>Youtube</strong>
-                    <p>{{user_details.youtube}}</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <strong>Joined</strong>
-                    <p>{{user_details.createdAt}}</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <strong>Last Updated</strong>
-                    <p>{{user_details.updatedAt}}</p>
-                </div>
+<!-- Profile 1 - Bootstrap Brain Component -->
+<section class=" py-3 py-md-5 py-xl-8 mb-5">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                <h2 class="mb-4 display-5 text-center">Profile</h2>
+                <p class="text-secondary text-center lead fs-4 mb-5">The Profile page is your digital hub, where you can
+                    fine-tune your experience. Here's a closer look at the settings you can expect to find in your
+                    profile page.</p>
+                <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-lg-9 col-md-8 mb-5">
-        <div class="card shadow">
-            <p class="card-title fw-bolder h5 px-3 py-3">
-                Update Form
-            </p>
-            <div class="card-body">
-                <form [formGroup]="userUpdate" (submit)="updateInfo()">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 sol-sm-12">
-                            <!-- Facbook -->
-                            <div class="form-group mb-3">
-                                <label for="facebook">Facbook Url</label>
-                                <input type="text" class="form-control mt-2"
-                                    placeholder="https://www.facebook.com/profile_url" formControlName="facebook">
-                            </div>
-                        </div>
 
-                        <div class="col-lg-6 col-md-6 sol-sm-12">
-                            <!-- Instagram -->
-                            <div class="form-group mb-3">
-                                <label for="instagram">Instagram Url</label>
-                                <input type="text" class="form-control mt-2"
-                                    placeholder="https://www.instagram.com/profile_url" formControlName="instagram">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 sol-sm-12">
-                            <!-- Spotify -->
-                            <div class="form-group mb-3">
-                                <label for="spotify">Sportify Url</label>
-                                <input type="text" class="form-control mt-2"
-                                    placeholder="https://www.sportify.com/profile_url" formControlName="spotify">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 sol-sm-12">
-                            <!-- Tiktok -->
-                            <div class="form-group mb-3">
-                                <label for="titok">Titok Url</label>
-                                <input type="text" class="form-control mt-2" formControlName="tiktok"
-                                    placeholder="https://www.tiktok.com/profile_url">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 sol-sm-12">
-                            <!-- Youtube -->
-                            <div class="form-group mb-3">
-                                <label for="youtube">Youtube Url</label>
-                                <input type="text" class="form-control mt-2" formControlName="youtube"
-                                    placeholder="https://www.youtube.com/profile_url">
+    <div class="container">
+        <div class="row gy-4 gy-lg-0">
+            <div class="col-12 col-lg-4 col-xl-3">
+                <div class="row gy-4">
+                    <div class="col-12">
+                        <div class="card widget-card border-dark shadow-sm">
+                            <div class="card-header text-bg-dark">Welcome, {{user_details.name}}</div>
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <img src="{{user_details.picture}}" class="img-fluid rounded-circle"
+                                        alt="{{user_details.name}}">
+                                </div>
+                                <h5 class="text-center mb-1">{{user_details.name}}</h5>
+                                <p class="text-center text-secondary mb-4">{{user_details.role}}</p>
+                                <ul class="list-group list-group-flush mb-4">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <h6 class="m-0">Events Posted</h6>
+                                        <span>{{eventNumber}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <h6 class="m-0">Gigs Posted</h6>
+                                        <span>{{gigNumber}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <h6 class="m-0">Services Posted</h6>
+                                        <span>{{serviceNumber}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <h6 class="m-0">Vacancies Posted</h6>
+                                        <span>{{vacancyNumber}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <h6 class="m-0">Gadgets Posted</h6>
+                                        <span>{{gadgetNumber}}</span>
+                                    </li>
+                                </ul>
+                                <div class="d-grid m-0">
+                                    <button class="btn btn-outline-dark" type="button"
+                                        (click)="showCreateOptionModal()">Create</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <div class="card widget-card border-light shadow-sm">
+                            <div class="card-header text-bg-dark">Social Accounts</div>
+                            <div class="card-body h3">
+                                <div class="d-flex justify-content-start">
+                                    <p class="mx-1" *ngIf="user_details.facebook">
+                                        <a href='{{user_details.facebook}}' target="_blank"><i
+                                                class="bi-facebook bi text-primary"></i></a>
+                                    </p>
+                                    <p class="mx-1" *ngIf="user_details.instagram">
+                                        <a href="{{user_details.instagram}}" target="_blank"><i
+                                                class="bi-instagram bi text-danger"></i></a>
+                                    </p>
+                                    <p class="mx-1" *ngIf="user_details.twitter">
+                                        <a href="{{user_details.twitter}}" target="_blank"><i
+                                                class="bi-twitter bi text-primary"></i></a>
+                                    </p>
 
-                    <div class="text-end mt-3">
-                        <button class="btn btn-secondary text-white fw-bold">Update</button>
+                                    <p class="mx-1" *ngIf="user_details.linkedin">
+                                        <a href="{{user_details.linkedin}}" target="_blank"><i
+                                                class="bi-linkedin bi text-primary"></i></a>
+                                    </p>
+                                    <p class="mx-1" *ngIf="user_details.youtube">
+                                        <a href="{{user_details.youtube}}" target="_blank"><i
+                                                class="bi-youtube bi text-danger"></i></a>
+                                    </p>
+                                    <p class="mx-1" *ngIf="user_details.tiktok">
+                                        <a href="{{user_details.tiktok}}" target="_blank"><i
+                                                class="bi-tiktok bi text-primary"></i></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
-
+                    <div class="col-12">
+                        <div class="card widget-card border-dark shadow-sm">
+                            <div class="card-header text-bg-dark">Awards</div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush mb-0">
+                                    <li class="list-group-item d-flex">
+                                        <h6><i class="bi-mortarboard"></i></h6>
+                                        <h6 class="ms-3">{{user_details.awards}}</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6 sol-sm-12">
-                <div class="card shadow mt-3">
-                    <p class="card-title fw-bolder  h5 px-2 py-2">
-                        My Events
-                    </p>
-                    <div class="card-body p-1 m-1 d-flex justify-content-between">
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <p>Hello</p>
-                                <p>How are you</p>
-                                <button class="ms-5 p-0">Action</button>
+            <div class="col-12 col-lg-8 col-xl-9">
+                <div class="card widget-card border-light shadow-sm">
+                    <div class="card-body p-4">
+                        <ul class="nav nav-tabs" id="profileTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                                    data-bs-target="#overview-tab-pane" type="button" role="tab"
+                                    aria-controls="overview-tab-pane" aria-selected="true">Overview</button>
                             </li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                    aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="email-tab" data-bs-toggle="tab"
+                                    data-bs-target="#email-tab-pane" type="button" role="tab"
+                                    aria-controls="email-tab-pane" aria-selected="false">Other</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="password-tab" data-bs-toggle="tab"
+                                    data-bs-target="#password-tab-pane" type="button" role="tab"
+                                    aria-controls="password-tab-pane" aria-selected="false">Password</button>
+                            </li>
                         </ul>
+                        <div class="tab-content pt-4" id="profileTabContent">
+                            <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel"
+                                aria-labelledby="overview-tab" tabindex="0">
+                                <h5 class="mb-3">About</h5>
+                                <p class="lead mb-3">{{user_details.bio}}</p>
+                                <h5 class="mb-3">Profile</h5>
+                                <div class="row g-0">
+                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                                        <div class="p-2">Full Name</div>
+                                    </div>
+                                    <div
+                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                                        <div class="p-2">{{user_details.name}}</div>
+                                    </div>
+                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                                        <div class="p-2">Role</div>
+                                    </div>
+                                    <div
+                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                                        <div class="p-2">{{user_details.role}}</div>
+                                    </div>
+                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                                        <div class="p-2">Location</div>
+                                    </div>
+                                    <div
+                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                                        <div class="p-2">{{user_details.location}}</div>
+                                    </div>
+                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                                        <div class="p-2">Username</div>
+                                    </div>
+                                    <div
+                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                                        <div class="p-2">{{user_details.username}}</div>
+                                    </div>
+                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                                        <div class="p-2">Genre</div>
+                                    </div>
+                                    <div
+                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                                        <div class="p-2">{{user_details.genre}}</div>
+                                    </div>
+                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                                        <div class="p-2">Company</div>
+                                    </div>
+                                    <div
+                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                                        <div class="p-2">GitHub Inc</div>
+                                    </div>
+                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                                        <div class="p-2">Phone</div>
+                                    </div>
+                                    <div
+                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                                        <div class="p-2">{{user_details.contact}}</div>
+                                    </div>
+                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                                        <div class="p-2">Email</div>
+                                    </div>
+                                    <div
+                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                                        <div class="p-2">{{user_details.email}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                                aria-labelledby="profile-tab" tabindex="0">
+                                <app-edit-profile></app-edit-profile>
+                            </div>
+                            <div class="tab-pane fade" id="email-tab-pane" role="tabpanel" aria-labelledby="email-tab"
+                                tabindex="0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <button type="submit" class="btn btn-primary mt-4" (click)="logout()">Log
+                                                Out</button>
+                                            <button type="submit" class="btn btn-danger mt-4">Delete
+                                                Account</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="password-tab-pane" role="tabpanel"
+                                aria-labelledby="password-tab" tabindex="0">
+                                <app-change-password></app-change-password>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-6 sol-sm-12">
-                <div class="card shadow mt-3">
-                    <p class="card-title fw-bolder  h5 px-2 py-2">
-                        My Posts
-                    </p>
-                    <div class="card-body p-1 m-1 d-flex justify-content-between">
-                        <ul class="list-group">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6 col-md-6 sol-sm-12">
-                <div class="card shadow mt-3">
-                    <p class="card-title fw-bolder  h5 px-2 py-2">
-                        My Gigs
-                    </p>
-                    <div class="card-body p-1 m-1 d-flex justify-content-between">
-                        <ul class="list-group">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 sol-sm-12">
-                <div class="card shadow mt-3">
-                    <p class="card-title fw-bolder  h5 px-2 py-2">
-                        My Services
-                    </p>
-                    <div class="card-body p-1 m-1 d-flex justify-content-between">
-                        <ul class="list-group">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card shadow mt-3">
-            <p class="card-title fw-bolder  h5 px-2 py-2">
-                My Gadgets
-            </p>
-            <div class="card-body p-1 m-1 d-flex justify-content-between">
-                <ul class="list-group">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="card shadow mt-3">
-            <p class="card-title fw-bolder text-danger h5 px-3 py-3">
-                Danger Zone
-            </p>
-            <div class="card-body d-flex justify-content-between">
-                <button class="btn btn-danger" (click)="logOut()">LogOut</button>
-                <button class="btn btn-danger">Delete Account</button>
             </div>
         </div>
     </div>
-</div>
+
+</section>

@@ -7,36 +7,35 @@ import { ApiService } from './api.service';
 })
 export class VacanciesService {
 
-  constructor() { }
   private apiService = inject(ApiService)
 
-  private eventDetailSource = new BehaviorSubject<any>(null);
-  private allEventsSource = new BehaviorSubject<any[]>([]);
-  private newEventsSource = new BehaviorSubject<any[]>([]);
-  eventDetail$ = this.eventDetailSource.asObservable();
-  allEventsList$ = this.allEventsSource.asObservable();
-  newEventsList$ = this.newEventsSource.asObservable();
+  private vacancyDetailSource = new BehaviorSubject<any>(null);
+  private allVacanciesSource = new BehaviorSubject<any[]>([]);
+  private newVacanciesSource = new BehaviorSubject<any[]>([]);
+  vacancyDetail$ = this.vacancyDetailSource.asObservable();
+  allVacanciesList$ = this.allVacanciesSource.asObservable();
+  newVacanciesList$ = this.newVacanciesSource.asObservable();
 
-  // allEvents: any;
-  // newevents: any
+  // allVacancies: any;
+  // newvacancies: any
 
-  setEventDetail(eventDetail: any) {
-    this.eventDetailSource.next(eventDetail);
+  setVacancyDetail(vacancyDetail: any) {
+    this.vacancyDetailSource.next(vacancyDetail);
   }
 
-  setNewEvent(newEvents: any) {
-    this.newEventsSource.next(newEvents)
+  setNewVacancy(newVacancies: any) {
+    this.newVacanciesSource.next(newVacancies)
   }
 
-  setAllEvents(allEvents: any) {
-    this.allEventsSource.next(allEvents)
+  setAllVacancies(allVacancies: any) {
+    this.allVacanciesSource.next(allVacancies)
   }
 
-  public async getEventDetail(id: any) {
+  public async getVacancyDetail(id: any) {
     try {
-      const response = await this.apiService.get(`event/event/${id}`)
-      if (response.data && response.data.event) {
-        this.setEventDetail(response.data.event)
+      const response = await this.apiService.get(`vacancy/vacancy/${id}`)
+      if (response.data && response.data.vacancy) {
+        this.setVacancyDetail(response.data.vacancy)
         // Trigger modal opening here
       }
     } catch (error) {
@@ -44,22 +43,22 @@ export class VacanciesService {
     }
   }
 
-  public async getnewEvents() {
+  public async getnewVacancies() {
     try {
-      const newEvents = await this.apiService.get('event/newevents')
-      if (newEvents.data && newEvents.data.event) {
-        this.setNewEvent(newEvents.data.event)
+      const newVacancies = await this.apiService.get('vacancy/newvacancies')
+      if (newVacancies.data && newVacancies.data.vacancy) {
+        this.setNewVacancy(newVacancies.data.vacancy)
       }
     } catch (error) {
 
     }
   }
 
-  public async getAllEvents() {
+  public async getAllVacancies() {
     try {
-      const allevents = await this.apiService.get('event/events')
-      if (allevents.data && allevents.data.events) {
-        this.setAllEvents(allevents.data.events)
+      const allvacancies = await this.apiService.get('vacancy/vacancies')
+      if (allvacancies.data && allvacancies.data.vacancies) {
+        this.setAllVacancies(allvacancies.data.vacancies)
       }
     } catch (error) {
 

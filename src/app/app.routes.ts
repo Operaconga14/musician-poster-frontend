@@ -1,8 +1,13 @@
 import { Routes } from '@angular/router';
+import { CreatePostComponent } from './components/auth/create-post/create-post.component';
+import { EditProfileComponent } from './components/auth/edit-profile/edit-profile.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { PostEventComponent } from './components/auth/post-event/post-event.component';
+import { PostVacanciesComponent } from './components/auth/post-vacancies/post-vacancies.component';
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { BlogsComponent } from './components/feature-module/blogs/blogs.component';
+import { ContributorsComponent } from './components/feature-module/contributors/contributors.component';
 import { EventsComponent } from './components/feature-module/events/events.component';
 import { GigsComponent } from './components/feature-module/gigs/gigs.component';
 import { HomeComponent } from './components/feature-module/home/home.component';
@@ -48,24 +53,27 @@ export const routes: Routes = [
         component: RegisterComponent
     },
     {
+        path: 'contributors',
+        component: ContributorsComponent
+    },
+    {
+        path: 'img',
+        component: EditProfileComponent
+    },
+    {
         path: 'me',
         component: ProfileComponent,
-        // canActivate: [
-        // ]
     },
-    // {
-    //     path: 'post-gigs',
-    //     // component: ProfileComponent,
-    //     // canActivate: []
-    // },
-    // {
-    //     path: 'post-vacancies',
-    //     // component: ProfileComponent,
-    //     // canActivate: []
-    // },
-    // {
-    //     path: 'post-goods',
-    //     // component: ProfileComponent,
-    //     // canActivate: []
-    // }
+    {
+        path: 'create-post',
+        component: CreatePostComponent
+    },
+    {
+        path: 'create-vacancy',
+        component: PostVacanciesComponent
+    },
+    {
+        path: 'create-event',
+        component: PostEventComponent
+    }
 ];

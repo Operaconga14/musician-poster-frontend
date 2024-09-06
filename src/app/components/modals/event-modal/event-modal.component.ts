@@ -24,8 +24,6 @@ export class EventModalComponent {
     //Add 'implements OnInit' to the class.
     this.eventService.eventDetail$.subscribe(details => {
       this.eventDetails = details
-      console.log('Event Details: ', details)
-      console.log("Gadget Image", details.image)
     })
   }
 

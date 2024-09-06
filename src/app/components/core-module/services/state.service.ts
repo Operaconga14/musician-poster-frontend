@@ -1,0 +1,92 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class StateService {
+
+  location = [
+    { name: 'Select Your state', value: null, disable: true },
+    { name: 'Abia', value: 'Abia' },
+    { name: 'Abuja', value: 'Abuja' },
+    { name: 'Adamawaa', value: 'Adamawa' },
+    { name: 'Akwa Ibom', value: 'Akwa Ibom' },
+    { name: 'Anambra', value: 'Anambra' },
+    { name: 'Bauchi', value: 'Bauchi' },
+    { name: 'Bayelsa', value: 'Bayelsa' },
+    { name: 'Benue', value: 'Benue' },
+    { name: 'Borno', value: 'Borno' },
+    { name: 'Cross River', value: 'Cross River' },
+    { name: 'Delta', value: 'Delta' },
+    { name: 'Ebonyi', value: 'Ebonyi' },
+    { name: 'Edo', value: 'Edo' },
+    { name: 'Ekiti', value: 'Ekiti' },
+    { name: 'Enugu', value: 'Enugu' },
+    { name: 'Gombe', value: 'Gombe' },
+    { name: 'Imo', value: 'Imo' },
+    { name: 'Jigawa', value: 'Jigawa' },
+    { name: 'Kaduna', value: 'Kaduna' },
+    { name: 'Kano', value: 'Kano' },
+    { name: 'Abia', value: 'Abia' },
+    { name: 'Katsina', value: 'Katsina' },
+    { name: 'Kebbi', value: 'Kebbi' },
+    { name: 'Kogi', value: 'Kogi' },
+    { name: 'Kwara', value: 'Kwara' },
+    { name: 'Lagos', value: 'Lagos' },
+    { name: 'Nasarawa', value: 'Nasarawa' },
+    { name: 'Niger', value: 'Niger' },
+    { name: 'Ogun', value: 'Ogun' },
+    { name: 'Ondo', value: 'Ondo' },
+    { name: 'Osun', value: 'Osun' },
+    { name: 'Oyo', value: 'Oyo' },
+    { name: 'Plateau', value: 'Plateau' },
+    { name: 'Rivers', value: 'Rivers' },
+    { name: 'Sokoto', value: 'Sokoto' },
+    { name: 'Taraba', value: 'Taraba' },
+    { name: 'Yobe', value: 'Yobe' },
+    { name: 'Zamfara', value: 'Zamfara' },
+  ]
+
+  constructor() { }
+}
+
+
+[
+  "Abia",
+  "Adamawa",
+  "Akwa Ibom",
+  "Anambra",
+  "Bauchi",
+  "Bayelsa",
+  "Benue",
+  "Borno",
+  "Cross River",
+  "Delta",
+  "Ebonyi",
+  "Edo",
+  "Ekiti",
+  "Enugu",
+  "FCT - Abuja",
+  "Gombe",
+  "Imo",
+  "Jigawa",
+  "Kaduna",
+  "Kano",
+  "Katsina",
+  "Kebbi",
+  "Kogi",
+  "Kwara",
+  "Lagos",
+  "Nasarawa",
+  "Niger",
+  "Ogun",
+  "Ondo",
+  "Osun",
+  "Oyo",
+  "Plateau",
+  "Rivers",
+  "Sokoto",
+  "Taraba",
+  "Yobe",
+  "Zamfara"
+]

@@ -5,36 +5,39 @@ import { ApiService } from './api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class GigsService {
+export class Gigservice {
 
 
   private apiService = inject(ApiService)
 
   private gigsDetailSource = new BehaviorSubject<any>(null);
-  private allGigssSource = new BehaviorSubject<any[]>([]);
-  private newGigssSource = new BehaviorSubject<any[]>([]);
+  private allGigsource = new BehaviorSubject<any[]>([]);
+  private newGigsource = new BehaviorSubject<any[]>([]);
   gigsDetail$ = this.gigsDetailSource.asObservable();
-  allGigssList$ = this.allGigssSource.asObservable();
-  newGigssList$ = this.newGigssSource.asObservable();
+  allGigsList$ = this.allGigsource.asObservable();
+  newGigsList$ = this.newGigsource.asObservable();
 
-  // allGigss: any;
-  // newgigss: any
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.getnewGigs()
+  }
 
   setGigsDetail(gigsDetail: any) {
     this.gigsDetailSource.next(gigsDetail);
   }
 
-  setNewGigs(newGigss: any) {
-    this.newGigssSource.next(newGigss)
+  setNewGigs(newGigs: any) {
+    this.newGigsource.next(newGigs)
   }
 
-  setAllGigss(allGigss: any) {
-    this.allGigssSource.next(allGigss)
+  setAllGigs(allGigs: any) {
+    this.allGigsource.next(allGigs)
   }
 
   public async getGigsDetail(id: any) {
     try {
-      const response = await this.apiService.get(`gigs/gigs/${id}`)
+      const response = await this.apiService.get(`gig/gigs/${id}`)
       if (response.data && response.data.gigs) {
         this.setGigsDetail(response.data.gigs)
         // Trigger modal opening here
@@ -44,22 +47,23 @@ export class GigsService {
     }
   }
 
-  public async getnewGigss() {
+  public async getnewGigs() {
     try {
-      const newGigss = await this.apiService.get('gigs/newgigss')
-      if (newGigss.data && newGigss.data.gigs) {
-        this.setNewGigs(newGigss.data.gigs)
+      const newgigs = await this.apiService.get('gig/newgigs')
+      if (newgigs.data && newgigs.data.gig) {
+        this.setNewGigs(newgigs.data.gig)
+
       }
     } catch (error) {
-
+      console.error(error)
     }
   }
 
-  public async getAllGigss() {
+  public async getAllGigs() {
     try {
-      const allgigss = await this.apiService.get('gigs/gigss')
-      if (allgigss.data && allgigss.data.gigss) {
-        this.setAllGigss(allgigss.data.gigss)
+      const allgigs = await this.apiService.get('gig/gigs')
+      if (allgigs.data && allgigs.data.gigs) {
+        this.setAllGigs(allgigs.data.gigs)
       }
     } catch (error) {
 

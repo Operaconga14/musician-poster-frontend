@@ -8,22 +8,27 @@
                     </div>
                     <div class="form-contanier px-2">
                         <div class="help">
-                            <button class="btn btn-transparent"><i class="bi bi-info"></i></button>
+                            <ng-template #tipContent>See all benefits for signing up</ng-template>
+                            <button type="button" class="btn btn-transparent" placement="bottom"
+                                [ngbTooltip]="tipContent" [openDelay]="300" [closeDelay]="500"
+                                (click)="openBenifitModal()"><i class="bi bi-info"></i></button>
                         </div>
-                        <form>
+                        <form [formGroup]="register_form" (ngSubmit)="register()">
                             <div class="row mt-5">
                                 <!-- First colunm -->
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <!-- name field -->
                                     <div class="form-group mb-2">
                                         <label for="name">Full Name</label>
-                                        <input type="text" class="form-control form-rounded bg-transparent">
+                                        <input type="text" name="name" class="form-control form-rounded bg-transparent"
+                                            formControlName="name">
                                     </div>
 
                                     <!-- name field -->
                                     <div class="form-group mb-2">
-                                        <label for="name">Email</label>
-                                        <input type="text" class="form-control form-rounded bg-transparent">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email"
+                                            class="form-control form-rounded bg-transparent" formControlName="email">
                                     </div>
                                 </div>
 
@@ -31,14 +36,15 @@
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <!-- name field -->
                                     <div class="form-group mb-2">
-                                        <label for="name">Nickname / Username</label>
-                                        <input type="text" class="form-control form-rounded bg-transparent">
+                                        <label for="username">Nickname / Username</label>
+                                        <input type="text" name="username"
+                                            class="form-control form-rounded bg-transparent" formControlName="username">
                                     </div>
                                     <!-- name field -->
                                     <div class="form-group mb-2">
-                                        <label for="name">Role</label>
-                                        <select name="role" class="form-control form-rounded bg-transparent"
-                                            formControlName="role" id="role">
+                                        <label for="role">Role</label>
+                                        <select class="form-control form-rounded bg-transparent" formControlName="role"
+                                            name="role">
                                             <option class="" value="" disabled>Select Options</option>
                                             <option class="" value="Instrumentalist">Instrumentalist
                                             </option>
@@ -56,12 +62,14 @@
                                 </div>
                                 <!-- name field -->
                                 <div class="form-group mb-2 mx-auto">
-                                    <label for="name">Password</label>
-                                    <input type="text" class="form-control form-rounded bg-transparent">
+                                    <label for="password">Password</label>
+                                    <input type="text" class="form-control form-rounded bg-transparent"
+                                        formControlName="password" name="password">
                                 </div>
                             </div>
-                            <div class="button mt-3">
-                                <button class="form-rounded btn-secondary btn">Register</button>
+                            <div class=" button mt-3">
+                                <button class="form-rounded btn-secondary btn" type="submit"
+                                    [disabled]="register_form.invalid">Register</button>
                             </div>
                             <div class="already a user mt-3">
                                 <p class="">Already have an account? login<a class="ms-1 text-decoration-none"

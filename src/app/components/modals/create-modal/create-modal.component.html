@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title fw-bold">Choose the option of what you want to create</h1>
+    </div>
+    <div class="card-body text-center">
+        <select class="form-control" name="createoption" #createOptionSelect id="">
+            <option value="">Choose your choose</option>
+            <option value="post">Create a post</option>
+            <option value="gig">Create a gig</option>
+            <option value="service">Create a service</option>
+            <option value="event">Create an event</option>
+        </select>
+        <button class="btn-dark btn mt-3" (click)="getandRedirect(createOptionSelect)">Create</button>
+    </div>
+</div>

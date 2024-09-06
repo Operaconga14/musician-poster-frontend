@@ -1,0 +1,97 @@
+<div class="row gy-3 gy-xxl-4">
+    <div class="col-12">
+        <div class="row gy-2">
+            <label class="col-12 form-label m-0">Profile Image</label>
+            <div class="col-12 d-flex justify-content-center">
+                <img src="{{userPicture}}" class="img-fluid" alt="{{userPicture}}">
+            </div>
+            <div class="col-12">
+                <form class="d-flex justify-content-center">
+                    <div class="form-group me-2">
+                        <input type="file" class="form-control" (change)="onfileSelect($event)" accept="image/*">
+                    </div>
+                    <button type="button" (click)="uploadImage()"
+                        class="d-inline-block bg-dark link-light lh-1 p-2 rounded ms-2"><i
+                            class="bi bi-upload"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="updateForm" (ngSubmit)="updateDetails()">
+        <div class="col-12 col-md-6">
+            <label for="inputFirstName" class="form-label">Contact</label>
+            <input type="text" class="form-control" formControlName="contact" placeholder="11(08192938473) or 14(+2348102938475)">
+        </div>
+        <div class="col-12 col-md-6">
+            <label for="inputLastName" class="form-label">Genre</label>
+            <input type="text" class="form-control" formControlName="genre" placeholder="Jazz">
+        </div>
+        <div class="col-12 col-md-6">
+            <label for="inputEducation" class="form-label">Awards</label>
+            <input type="text" class="form-control" formControlName="awards" placeholder="Best Musician => African Gospel Songs">
+        </div>
+        <div class="col-12 col-md-6">
+            <label for="location" class="form-label">Location</label>
+            <select class="form-select" name="location" id="location" formControlName="location">
+                <option *ngFor="let location of locations" value="{{location.value}}">{{location.name}}</option>
+            </select>
+        </div>
+        <fieldset class="mt-5">
+            <h4 class="text-center">Social Media Handles</h4>
+            <!-- <hr class="mt-1"> -->
+            <div class="col-12 col-md-6">
+                <label for="inputSkills" class="form-label">Facebook</label>
+                <input type="text" class="form-control" formControlName="facebook"
+                    placeholder="https://www.facebook.com/username">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="inputJob" class="form-label">Audiomack</label>
+                <input type="text" class="form-control" formControlName="audiomack"
+                    placeholder="https://www.audiomack.com/username">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="inputCompany" class="form-label">Applemusic</label>
+                <input type="text" class="form-control" formControlName="applemusic"
+                    placeholder="https://www.applemusic.com/username">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="inputPhone" class="form-label">Boomplay</label>
+                <input type="text" class="form-control" formControlName="boomplay"
+                    placeholder="https://www.boomplay.com/username">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="inputEmail" class="form-label">Instagram</label>
+                <input type="text" class="form-control" formControlName="instagram"
+                    placeholder="https://www.instagram.com/username">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="inputAddress" class="form-label">Spotify</label>
+                <input type="text" class="form-control" formControlName="spotify"
+                    placeholder="https://www.spotify.com/username">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="inputYouTube" class="form-label">YouTube</label>
+                <input type="text" class="form-control" formControlName="youtube"
+                    placeholder="https://www.youtube.com/username">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="inputX" class="form-label">X / Twitter</label>
+                <input type="text" class="form-control" formControlName="twitter"
+                    placeholder="https://www.twitter.com/username">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="inputFacebook" class="form-label">Tiktok</label>
+                <input type="text" class="form-control" formControlName="tiktok"
+                    placeholder="https://www.tiktok.com/username">
+            </div>
+        </fieldset>
+        <div class="col-12">
+            <label for="inputAbout" class="form-label">About</label>
+            <textarea class="form-control bg-text-transparent" formControlName="bio"
+                placeholder="I am a musictian with great awards"></textarea>
+        </div>
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+</div>

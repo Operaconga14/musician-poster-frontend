@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environments';
 export class ApiService {
 
 
-  server = environment.api_url
+  server = environment.cloud_api_url
   authenticationFailEvent = new EventEmitter
 
   private readonly CACHE_DURATION = 30 * 30 * 1000
@@ -21,8 +21,12 @@ export class ApiService {
 
   // http get method
   get(path: any): Promise<AxiosResponse<any>> {
+    const token = localStorage.getItem('token')
     return axios.get(`${this.server}${path}`, {
-      withCredentials: true
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
   }
 
@@ -35,8 +39,12 @@ export class ApiService {
 
   // update http method
   update(path: any, data: any): Promise<AxiosResponse<any>> {
+    const token = localStorage.getItem('token')
     return axios.put(`${this.server}${path}`, data, {
-      withCredentials: true
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
   }
 }

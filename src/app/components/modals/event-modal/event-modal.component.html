@@ -5,11 +5,7 @@
 <div class="modal-body m-0 p-0">
     <div class="border border-2 border-top-0 shadow-sm">
         <div class="card-header p-0 m-0 rounded">
-            <a [href]="eventDetails.image" target="_blank">
-                <img *ngIf="eventDetails.image" [src]="eventDetails.image" alt="{{ eventDetails.name }}"
-                    style="max-width: 200px; max-height: 200px;">
-                <img [src]="eventDetails.image" alt="Click on the Image to view it" class="w-100 rounded">
-            </a>
+            <img src="{{eventDetails.image}}" class="img-fluid rounded-circle" alt="{{eventDetails.title}} Image">
         </div>
     </div>
 

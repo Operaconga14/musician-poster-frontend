@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { GoogleAnalyticsService } from '../../core-module/services/google-analytics.service';
 import { ThemeService } from '../../core-module/services/theme.service';
 import { ToastsComponent } from "../../core-module/toasts/toasts.component";
 import { BackToTopComponent } from "../back-to-top/back-to-top.component";
@@ -16,11 +17,18 @@ import { HeaderComponent } from '../header/header.component';
 export class DefaultLayoutComponent implements OnInit {
 
   private themeService = inject(ThemeService)
+  private googleAlnlyService = inject(GoogleAnalyticsService)
+  private router = inject(Router)
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.themeService.setInitialTheme()
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.googleAlnlyService.trackPageView(event.urlAfterRedirects)
+      }
+    })
   }
 
 }

@@ -1,0 +1,51 @@
+<section class="mb-5">
+    <div class="bg-transparent mt-5 text-center mb-5">
+        <h1>Contributors</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-3 col-lg" *ngFor="let contributor of contributors">
+            <div class="card w-70 bg-transparent border-0">
+                <div class="card-header p-0 m-0 bg-transparent border-0 text-center">
+                    <img [src]="contributor.imageUrl" *ngIf="contributor.imageUrl" alt="" height="200" width="200"
+                        class=" image-fluid rounded">
+                </div>
+                <div class="card-body text-center">
+                    <h3 class="fw-bold">{{contributor.name}}</h3>
+                    <div class="d-flex mt-0 pt-0 justify-content-center">
+                        <p class="small">{{contributor.nickname}}</p>
+                    </div>
+                    <div class="d-flex justify-content-center mt-0 pt-0">
+                        <p class="small">{{contributor.profession}}</p>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <p class="mx-1" *ngIf="contributor.socialHandles.facebook">
+                            <a href='{{contributor.socialHandles.facebook}}'><i
+                                    class="bi-facebook bi text-primary"></i></a>
+                        </p>
+                        <p class="mx-1" *ngIf="contributor.socialHandles.instagram">
+                            <a href="{{contributor.socialHandles.instagram}}" target="_blank"><i
+                                    class="bi-instagram bi text-danger"></i></a>
+                        </p>
+                        <p class="mx-1" *ngIf="contributor.socialHandles.twitter">
+                            <a href="{{contributor.socialHandles.twitter}}" target="_blank"><i
+                                    class="bi-twitter bi text-primary"></i></a>
+                        </p>
+
+                        <p class="mx-1" *ngIf="contributor.socialHandles.linkedin">
+                            <a href="{{contributor.socialHandles.linkedin}}" target="_blank"><i
+                                    class="bi-linkedin bi text-primary"></i></a>
+                        </p>
+                        <p class="mx-1" *ngIf="contributor.socialHandles.youtube">
+                            <a [href]="contributor.socialHandles.youtube" target="_blank"><i
+                                    class="bi-youtube bi text-danger"></i></a>
+                        </p>
+                        <p class="mx-1" *ngIf="contributor.socialHandles.tiktok">
+                            <a href="{{contributor.socialHandles.tiktok}}" target="_blank"><i
+                                    class="bi-tiktok bi text-primary"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
