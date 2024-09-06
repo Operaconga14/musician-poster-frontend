@@ -35,6 +35,7 @@ export class HeaderComponent {
       { name: 'My Dashboard', url: 'me' },
       { name: 'Login', url: `auth/login` },
       { name: 'SignUp', url: 'auth/register' },
+      // { name: 'Privacy Policy', url: 'policy' },
     ]
   }
 }

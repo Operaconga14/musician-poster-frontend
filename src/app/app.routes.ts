@@ -12,6 +12,7 @@ import { EventsComponent } from './components/feature-module/events/events.compo
 import { GigsComponent } from './components/feature-module/gigs/gigs.component';
 import { HomeComponent } from './components/feature-module/home/home.component';
 import { MarketPlaceComponent } from './components/feature-module/market-place/market-place.component';
+import { PolicyComponent } from './components/feature-module/policy/policy.component';
 import { ServicesComponent } from './components/feature-module/services/services.component';
 import { VacanciesComponent } from './components/feature-module/vacancies/vacancies.component';
 
@@ -75,5 +76,9 @@ export const routes: Routes = [
     {
         path: 'create-event',
         component: PostEventComponent
+    },
+    {
+        path: 'privacy-policy',
+        component: PolicyComponent
     }
 ];
