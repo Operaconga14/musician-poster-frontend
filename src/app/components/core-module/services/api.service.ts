@@ -46,4 +46,14 @@ export class ApiService {
       }
     });
   }
+
+  delete(path: any): Promise<AxiosResponse<any>> {
+    const token = localStorage.getItem('token')
+    return axios.delete(`${this.server}${path}`, {
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
 }

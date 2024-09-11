@@ -17,12 +17,14 @@ export class UserService {
   private vacancycountSource = new BehaviorSubject<any>(null);
   private gadgetcountSource = new BehaviorSubject<any>(null);
   private myGigsSource = new BehaviorSubject<any>(null);
+  private myVacanciesSource = new BehaviorSubject<any>(null);
   eventCountNumber$ = this.eventcountSource.asObservable();
   gigCountNumber$ = this.gigcountSource.asObservable();
   serviceCountNumber$ = this.servicecountSource.asObservable();
   vacancyCountNumber$ = this.vacancycountSource.asObservable();
   gadgetCountNumber$ = this.gadgetcountSource.asObservable();
   myGigsList$ = this.myGigsSource.asObservable();
+  myVacanciesList$ = this.myVacanciesSource.asObservable();
 
   private apiService = inject(ApiService);
 
@@ -41,6 +43,9 @@ export class UserService {
 
   setMyGigs(mygigs: any) {
     this.myGigsSource.next(mygigs);
+  }
+  setMyVacancies(myvacancies: any) {
+    this.myVacanciesSource.next(myvacancies);
   }
 
   setEventCount(eventsCounts: any) {
@@ -81,7 +86,13 @@ export class UserService {
     const mygigs = await this.apiService.get('gig/my');
     if (mygigs.data.gigs) {
       this.setMyGigs(mygigs.data.gigs);
-      console.log('my Gigs: ', mygigs.data.gigs);
+    }
+  }
+
+  async getMyVacancies() {
+    const myvacancy = await this.apiService.get('vacancy/my');
+    if (myvacancy.data.vacancies) {
+      this.setMyVacancies(myvacancy.data.vacancies);
     }
   }
 

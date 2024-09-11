@@ -12,6 +12,7 @@ import { DatetimeService } from '../../core-module/services/datetime.service';
 import { ModalService } from '../../core-module/services/modal.service';
 import { UserService } from '../../core-module/services/user.service';
 import { CreateModalComponent } from '../../modals/create-modal/create-modal.component';
+import { DeleteModalComponent } from '../../modals/delete-modal/delete-modal.component';
 import { ChangePasswordComponent } from "../change-password/change-password.component";
 import { EditProfileComponent } from "../edit-profile/edit-profile.component";
 
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
   postNumber: any;
   vacancyNumber: any;
   myGigs: any;
+  myVacancy: any;
 
 
   private authService = inject(AuthService);
@@ -55,10 +57,14 @@ export class ProfileComponent implements OnInit {
     this.userService.getServiceCounts();
     this.userService.getVacacyCounts();
     this.userService.getMygigs();
+    this.userService.getMyVacancies();
+    this.userService.myVacanciesList$.subscribe(myvacancies => {
+      this.myVacancy = myvacancies;
+      this.formatedTime = this.dateTimeService.fromatTime(this.myVacancy.time);
+    });
     this.userService.myGigsList$.subscribe(mygigs => {
       this.myGigs = mygigs;
       this.formatedTime = this.dateTimeService.fromatTime(this.myGigs.time);
-      console.log('Hello My: ', this.myGigs);
     });
 
     this.userService.eventCountNumber$.subscribe(eventsnumber => {
@@ -118,6 +124,10 @@ export class ProfileComponent implements OnInit {
   logout() {
     this.authService.signOut();
     this.router.navigate(['auth/login']);
+  }
+
+  deleteAccount() {
+    this.modalService.openModal(DeleteModalComponent);
   }
 
   showCreateOptionModal() {

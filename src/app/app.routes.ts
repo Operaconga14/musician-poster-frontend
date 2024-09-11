@@ -45,22 +45,23 @@ export const routes: Routes = [
         path: 'me',
         loadComponent: () => import('./components/auth/profile/profile.component').then(c => c.ProfileComponent)
     },
-    {
-        path: 'create-post',
-        loadComponent: () => import('./components/auth/create-post/create-post.component').then(c => c.CreatePostComponent)
-    },
+    // {
+    //     path: 'create-post',
+    //     loadComponent: () => import('./components/auth/create-post/create-post.component').then(c => c.CreatePostComponent)
+    // },
     {
         path: 'create-vacancy',
         loadComponent: () => import('./components/auth/post-vacancies/post-vacancies.component').then(c => c.PostVacanciesComponent)
     },
+    // {
+    //     path: 'create-event',
+    //     loadComponent: () => import('./components/auth/post-event/post-event.component').then(c => c.PostEventComponent)
+    // },
+    // {
+    //     path: 'privacy-policy',
+    //     loadComponent: () => import('./components/feature-module/policy/policy.component').then(c => c.PolicyComponent)
+    // },
     {
-        path: 'create-event',
-        loadComponent: () => import('./components/auth/post-event/post-event.component').then(c => c.PostEventComponent)
-    },
-    {
-        path: 'privacy-policy',
-        loadComponent: () => import('./components/feature-module/policy/policy.component').then(c => c.PolicyComponent)
-    }, {
         path: 'create-gig',
         loadComponent: () => import('./components/auth/post-gigs/post-gigs.component').then(c => c.PostGigsComponent)
     }
