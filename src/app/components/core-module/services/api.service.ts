@@ -9,42 +9,41 @@ import { environment } from '../../../environments/environments';
 export class ApiService {
 
 
-  server = environment.cloud_api_url
-  authenticationFailEvent = new EventEmitter
+  server = environment.api_url;
+  authenticationFailEvent = new EventEmitter;
 
-  private readonly CACHE_DURATION = 30 * 30 * 1000
 
   constructor() {
-    axios.defaults.withCredentials = true
+    axios.defaults.withCredentials = true;
   }
 
 
   // http get method
   get(path: any): Promise<AxiosResponse<any>> {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     return axios.get(`${this.server}${path}`, {
       withCredentials: true,
       headers: {
         Authorization: `Bearer ${token}`
       }
-    })
+    });
   }
 
   // http post method
   post(path: any, data: any): Promise<AxiosResponse<any>> {
     return axios.post(`${this.server}${path}`, data, {
       withCredentials: true
-    })
+    });
   }
 
   // update http method
   update(path: any, data: any): Promise<AxiosResponse<any>> {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     return axios.put(`${this.server}${path}`, data, {
       withCredentials: true,
       headers: {
         Authorization: `Bearer ${token}`
       }
-    })
+    });
   }
 }

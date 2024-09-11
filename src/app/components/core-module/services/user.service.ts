@@ -10,19 +10,21 @@ import { ApiService } from './api.service';
 })
 export class UserService {
 
-  private currentUser$ = new BehaviorSubject<User | undefined>(undefined)
-  private eventcountSource = new BehaviorSubject<any>(null)
-  private gigcountSource = new BehaviorSubject<any>(null)
-  private servicecountSource = new BehaviorSubject<any>(null)
-  private vacancycountSource = new BehaviorSubject<any>(null)
-  private gadgetcountSource = new BehaviorSubject<any>(null)
-  eventCountNumber$ = this.eventcountSource.asObservable()
-  gigCountNumber$ = this.gigcountSource.asObservable()
-  serviceCountNumber$ = this.servicecountSource.asObservable()
-  vacancyCountNumber$ = this.vacancycountSource.asObservable()
-  gadgetCountNumber$ = this.gadgetcountSource.asObservable()
+  private currentUser$ = new BehaviorSubject<User | undefined>(undefined);
+  private eventcountSource = new BehaviorSubject<any>(null);
+  private gigcountSource = new BehaviorSubject<any>(null);
+  private servicecountSource = new BehaviorSubject<any>(null);
+  private vacancycountSource = new BehaviorSubject<any>(null);
+  private gadgetcountSource = new BehaviorSubject<any>(null);
+  private myGigsSource = new BehaviorSubject<any>(null);
+  eventCountNumber$ = this.eventcountSource.asObservable();
+  gigCountNumber$ = this.gigcountSource.asObservable();
+  serviceCountNumber$ = this.servicecountSource.asObservable();
+  vacancyCountNumber$ = this.vacancycountSource.asObservable();
+  gadgetCountNumber$ = this.gadgetcountSource.asObservable();
+  myGigsList$ = this.myGigsSource.asObservable();
 
-  private apiService = inject(ApiService)
+  private apiService = inject(ApiService);
 
   // eventCount: any
 
@@ -31,73 +33,82 @@ export class UserService {
     if (jsonStr) {
       const user = JSON.parse(jsonStr);
       if (!user) {
-        this.currentUser$.next(user)
+        this.currentUser$.next(user);
       }
     }
 
   }
 
+  setMyGigs(mygigs: any) {
+    this.myGigsSource.next(mygigs);
+  }
+
   setEventCount(eventsCounts: any) {
-    this.eventcountSource.next(eventsCounts)
+    this.eventcountSource.next(eventsCounts);
   }
 
   setGigCount(gigsCount: any) {
-    this.gigcountSource.next(gigsCount)
+    this.gigcountSource.next(gigsCount);
   }
 
   setServiceCount(serviceCount: any) {
-    this.servicecountSource.next(serviceCount)
+    this.servicecountSource.next(serviceCount);
   }
 
   setVacancyCount(vacancyCount: any) {
-    this.vacancycountSource.next(vacancyCount)
+    this.vacancycountSource.next(vacancyCount);
   }
 
   setGadgetcount(gadgetCount: any) {
-    this.gadgetcountSource.next(gadgetCount)
+    this.gadgetcountSource.next(gadgetCount);
   }
 
   public async getEventCounts() {
-    const eventCounts = await this.apiService.get('event/my')
+    const eventCounts = await this.apiService.get('event/my');
     if (eventCounts.data && eventCounts.data.eventCount) {
-      this.setEventCount(eventCounts.data.eventCount)
+      this.setEventCount(eventCounts.data.eventCount);
     }
   }
 
   public async getGigsCounts() {
-    const gigCounts = await this.apiService.get('gig/my')
-    if (gigCounts.data && gigCounts.data.gigCount) {
-      console.log('gig count: ', gigCounts.data.gigCount)
-      this.setGigCount( gigCounts.data.gigCount)
+    const gigCounts = await this.apiService.get('gig/my');
+    if (gigCounts.data.gigCount) {
+      this.setGigCount(gigCounts.data.gigCount);
+    }
+  }
+
+  async getMygigs() {
+    const mygigs = await this.apiService.get('gig/my');
+    if (mygigs.data.gigs) {
+      this.setMyGigs(mygigs.data.gigs);
+      console.log('my Gigs: ', mygigs.data.gigs);
     }
   }
 
   public async getServiceCounts() {
-    const serviceCounts = await this.apiService.get('service/my')
+    const serviceCounts = await this.apiService.get('service/my');
     if (serviceCounts.data && serviceCounts.data.serviceCount) {
-      console.log('service count: ', serviceCounts.data)
-      this.setServiceCount( serviceCounts.data.serviceCount)
+      this.setServiceCount(serviceCounts.data.serviceCount);
     }
   }
 
   public async getVacacyCounts() {
-    const vacancyCounts = await this.apiService.get('vacancy/my')
+    const vacancyCounts = await this.apiService.get('vacancy/my');
     if (vacancyCounts.data && vacancyCounts.data.vacancyCount) {
-      console.log('vacancy count: ', vacancyCounts.data)
-      this.setVacancyCount( vacancyCounts.data.vacancyCount)
+      this.setVacancyCount(vacancyCounts.data.vacancyCount);
     }
   }
 
   public async getGadgetCount() {
-    const gadgetCounts = await this.apiService.get('gadget/my')
+    const gadgetCounts = await this.apiService.get('gadget/my');
     if (gadgetCounts.data && gadgetCounts.data.gadgetCount) {
-      console.log('gadget count: ', gadgetCounts.data)
-      this.setGadgetcount( gadgetCounts.data.gadgetCount)
+      this.setGadgetcount(gadgetCounts.data.gadgetCount);
     }
   }
 
+
   public get CurrentUser() {
-    return this.currentUser$.value
+    return this.currentUser$.value;
   }
 
 

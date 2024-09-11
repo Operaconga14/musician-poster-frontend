@@ -17,15 +17,15 @@ import { StateService } from '../../core-module/services/state.service';
 export class EditProfileComponent {
   selectedFile: File | null = null;
 
-  locations: any
-  updateForm: FormGroup
-  userPicture: any
+  locations: any;
+  updateForm: FormGroup;
+  userPicture: any;
 
-  private locationService = inject(StateService)
-  private apiService = inject(ApiService)
-  private toastService = inject(AppToastService)
-  private authService = inject(AuthService)
-  private router = inject(Router)
+  private locationService = inject(StateService);
+  private apiService = inject(ApiService);
+  private toastService = inject(AppToastService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   constructor() {
     // +2348140153436
@@ -44,7 +44,8 @@ export class EditProfileComponent {
       youtube: new FormControl(''),
       twitter: new FormControl(''),
       tiktok: new FormControl(''),
-    })
+      // linkedin: new FormControl(''),
+    });
   }
 
   onfileSelect(event: any) {
@@ -56,104 +57,109 @@ export class EditProfileComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.locations = this.locationService.location
-    this.loadUserPicture()
+    this.locations = this.locationService.location;
+    this.loadUserPicture();
   }
 
   loadUserPicture() {
-    const token = this.authService.getLocaleStorage()
+    const token = this.authService.getLocaleStorage();
     if (!token) {
-      this.toastService.error('Error!', `Login first`, 5000, 'bg-danger text-white')
-      this.router.navigate(['auth/login'])
+      this.toastService.error('Error!', `Login first`, 5000, 'bg-danger text-white');
+      this.router.navigate(['auth/login']);
     }
 
     this.apiService.get('user/me')
       .then(response => {
-        this.userPicture = response.data.user.picture
+        this.userPicture = response.data.user.picture;
       })
       .catch(error => {
         if (error.response.data) {
-          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white')
+          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white');
         }
 
         if (Array.isArray(error.response.data.error.errors)) {
           error.response.data.error.errors.forEach((err: any) => {
-            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white')
+            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white');
           });
         }
-      })
+      });
   }
 
   updateDetails() {
-    console.log("Detals: ", this.updateForm.value)
+    console.log("Detals: ", this.updateForm.value);
 
-    const updatedPayload = this.getFilledFields()
+    const updatedPayload = this.getFilledFields();
 
     if (Object.keys(updatedPayload).length === 0) {
-      this.toastService.error('Error!', 'No field to update', 5000, 'bg-danger text-white')
-      return
+      this.toastService.error('Error!', 'No field to update', 5000, 'bg-danger text-white');
+      return;
     }
     this.apiService.update('user/me/update', updatedPayload)
       .then(async response => {
-        this.toastService.show('Success', `${response.data.message}`, 5000, 'bg-success text-white')
-        location.reload()
+        this.toastService.show('Success', `${response.data.message}`, 5000, 'bg-success text-white');
+        location.reload();
       })
       .catch(error => {
         if (error.response.data) {
-          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white')
+          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white');
         }
 
         if (Array.isArray(error.response.data.error.errors)) {
           error.response.data.error.errors.forEach((err: any) => {
-            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white')
+            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white');
           });
         }
-      })
+      });
 
   }
 
   getFilledFields() {
-    const filedFields: any = {}
+    const filedFields: any = {};
 
     // get the current form value
     const formValue = this.updateForm.value;
 
     Object.keys(formValue).forEach(key => {
       if (formValue[key] && formValue[key].trim() !== '') {
-        filedFields[key] = formValue[key]
+        filedFields[key] = formValue[key];
       }
     });
-    return filedFields
+    return filedFields;
   }
 
+  // Angular service example
   uploadImage() {
     if (!this.selectedFile) {
-      console.log('No File selscted')
-      return
+      console.log('No file selected');
+      this.toastService.error('Error!', 'Please select a file to upload.', 5000, 'bg-danger text-white');
+      return;
     }
-    // console.log('Uploaded File', this.selectedFile)
-    const formData = new FormData();
-    formData.append('picture', this.selectedFile, this.selectedFile.name)
-    // console.log("Data", formData.getAll('image'))
 
-    // store to the database
-    this.apiService.post('user/picture', formData)
-      .then(async response => {
-        console.log(response.data)
+    const formData = new FormData();
+    formData.append('picture', this.selectedFile, this.selectedFile.name);
+
+    this.apiService.update('user/picture', formData) // Ensure this matches your Express route
+      .then(response => {
+        console.log(response.data);
+        this.toastService.show('Success!', 'Your image has been uploaded.', 5000, 'bg-success text-white');
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
       })
       .catch(error => {
-        if (error.response.data) {
-          console.error(error.response)
-          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white')
-        }
+        console.error('Upload error:', error);
 
-        if (Array.isArray(error.response.data.error.errors)) {
-          console.error(error.response)
+        if (error.response && error.response.data) {
+          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white');
 
-          error.response.data.error.errors.forEach((err: any) => {
-            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white')
-          });
+          if (Array.isArray(error.response.data.error?.errors)) {
+            error.response.data.error.errors.forEach((err: any) => {
+              this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white');
+            });
+          }
+        } else {
+          this.toastService.error('Error!', 'An unexpected error occurred.', 5000, 'bg-danger text-white');
         }
-      })
+      });
   }
 }

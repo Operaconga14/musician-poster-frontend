@@ -6,8 +6,8 @@
         <div class="col-sm-6 col-md-3 col-lg" *ngFor="let contributor of contributors">
             <div class="card w-70 bg-transparent border-0">
                 <div class="card-header p-0 m-0 bg-transparent border-0 text-center">
-                    <img [src]="contributor.imageUrl" *ngIf="contributor.imageUrl" alt="" height="200" width="200"
-                        class=" image-fluid rounded">
+                    <img [src]="contributor.imageUrl" [alt]="contributor.name" height="200" width="200"
+                        class=" image-fluid rounded-circle">
                 </div>
                 <div class="card-body text-center">
                     <h3 class="fw-bold">{{contributor.name}}</h3>

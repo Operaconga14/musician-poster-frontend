@@ -1,84 +1,67 @@
 import { Routes } from '@angular/router';
-import { CreatePostComponent } from './components/auth/create-post/create-post.component';
-import { EditProfileComponent } from './components/auth/edit-profile/edit-profile.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { PostEventComponent } from './components/auth/post-event/post-event.component';
-import { PostVacanciesComponent } from './components/auth/post-vacancies/post-vacancies.component';
-import { ProfileComponent } from './components/auth/profile/profile.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { BlogsComponent } from './components/feature-module/blogs/blogs.component';
-import { ContributorsComponent } from './components/feature-module/contributors/contributors.component';
-import { EventsComponent } from './components/feature-module/events/events.component';
-import { GigsComponent } from './components/feature-module/gigs/gigs.component';
-import { HomeComponent } from './components/feature-module/home/home.component';
-import { MarketPlaceComponent } from './components/feature-module/market-place/market-place.component';
-import { PolicyComponent } from './components/feature-module/policy/policy.component';
-import { ServicesComponent } from './components/feature-module/services/services.component';
-import { VacanciesComponent } from './components/feature-module/vacancies/vacancies.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: HomeComponent
+        loadComponent: () => import('./components/feature-module/home/home.component').then(c => c.HomeComponent)
     },
     {
         path: 'market-place',
-        component: MarketPlaceComponent
+        loadComponent: () => import('./components/feature-module/market-place/market-place.component').then(c => c.MarketPlaceComponent)
     },
     {
         path: 'gigs',
-        component: GigsComponent
+        loadComponent: () => import('./components/feature-module/gigs/gigs.component').then(c => c.GigsComponent)
     },
     {
         path: 'vacancies',
-        component: VacanciesComponent
+        loadComponent: () => import('./components/feature-module/vacancies/vacancies.component').then(c => c.VacanciesComponent)
     },
     {
         path: 'services',
-        component: ServicesComponent
+        loadComponent: () => import('./components/feature-module/services/services.component').then(c => c.ServicesComponent)
     },
     {
         path: 'blogs',
-        component: BlogsComponent
+        loadComponent: () => import('./components/feature-module/blogs/blogs.component').then(c => c.BlogsComponent)
     },
     {
         path: 'events',
-        component: EventsComponent
+        loadComponent: () => import('./components/feature-module/events/events.component').then(c => c.EventsComponent)
     },
     {
         path: 'auth/login',
-        component: LoginComponent
+        loadComponent: () => import('./components/auth/login/login.component').then(c => c.LoginComponent)
     },
     {
         path: 'auth/register',
-        component: RegisterComponent
+        loadComponent: () => import('./components/auth/register/register.component').then(c => c.RegisterComponent)
     },
     {
         path: 'contributors',
-        component: ContributorsComponent
-    },
-    {
-        path: 'img',
-        component: EditProfileComponent
+        loadComponent: () => import('./components/feature-module/contributors/contributors.component').then(c => c.ContributorsComponent)
     },
     {
         path: 'me',
-        component: ProfileComponent,
+        loadComponent: () => import('./components/auth/profile/profile.component').then(c => c.ProfileComponent)
     },
     {
         path: 'create-post',
-        component: CreatePostComponent
+        loadComponent: () => import('./components/auth/create-post/create-post.component').then(c => c.CreatePostComponent)
     },
     {
         path: 'create-vacancy',
-        component: PostVacanciesComponent
+        loadComponent: () => import('./components/auth/post-vacancies/post-vacancies.component').then(c => c.PostVacanciesComponent)
     },
     {
         path: 'create-event',
-        component: PostEventComponent
+        loadComponent: () => import('./components/auth/post-event/post-event.component').then(c => c.PostEventComponent)
     },
     {
         path: 'privacy-policy',
-        component: PolicyComponent
+        loadComponent: () => import('./components/feature-module/policy/policy.component').then(c => c.PolicyComponent)
+    }, {
+        path: 'create-gig',
+        loadComponent: () => import('./components/auth/post-gigs/post-gigs.component').then(c => c.PostGigsComponent)
     }
 ];

@@ -21,8 +21,8 @@
                             <div class="card-header text-bg-dark">Welcome, {{user_details.name}}</div>
                             <div class="card-body">
                                 <div class="text-center mb-3">
-                                    <img src="{{user_details.picture}}" class="img-fluid rounded-circle"
-                                        alt="{{user_details.name}}">
+                                    <img [src]="user_details.picture" [alt]="user_details.name" height="250" width="250"
+                                        class=" image-fluid rounded-circle">
                                 </div>
                                 <h5 class="text-center mb-1">{{user_details.name}}</h5>
                                 <p class="text-center text-secondary mb-4">{{user_details.role}}</p>
@@ -60,30 +60,46 @@
                             <div class="card-header text-bg-dark">Social Accounts</div>
                             <div class="card-body h3">
                                 <div class="d-flex justify-content-start">
-                                    <p class="mx-1" *ngIf="user_details.facebook">
+                                    <p class="mx-2" *ngIf="user_details.facebook">
                                         <a href='{{user_details.facebook}}' target="_blank"><i
                                                 class="bi-facebook bi text-primary"></i></a>
                                     </p>
-                                    <p class="mx-1" *ngIf="user_details.instagram">
+                                    <p class="mx-2" *ngIf="user_details.instagram">
                                         <a href="{{user_details.instagram}}" target="_blank"><i
                                                 class="bi-instagram bi text-danger"></i></a>
                                     </p>
-                                    <p class="mx-1" *ngIf="user_details.twitter">
+                                    <p class="mx-2" *ngIf="user_details.twitter">
                                         <a href="{{user_details.twitter}}" target="_blank"><i
                                                 class="bi-twitter bi text-primary"></i></a>
                                     </p>
 
-                                    <p class="mx-1" *ngIf="user_details.linkedin">
+                                    <!-- <p class="mx-2" *ngIf="user_details.linkedin">
                                         <a href="{{user_details.linkedin}}" target="_blank"><i
                                                 class="bi-linkedin bi text-primary"></i></a>
-                                    </p>
-                                    <p class="mx-1" *ngIf="user_details.youtube">
+                                    </p> -->
+                                    <p class="mx-2" *ngIf="user_details.youtube">
                                         <a href="{{user_details.youtube}}" target="_blank"><i
                                                 class="bi-youtube bi text-danger"></i></a>
                                     </p>
-                                    <p class="mx-1" *ngIf="user_details.tiktok">
+                                    <p class="mx-2" *ngIf="user_details.tiktok">
                                         <a href="{{user_details.tiktok}}" target="_blank"><i
                                                 class="bi-tiktok bi text-primary"></i></a>
+                                    </p>
+                                    <p class="mx-2" *ngIf="user_details.applemusic">
+                                        <a href="{{user_details.applemusic}}" target="_blank"><i
+                                                class="bi-music-note-beamed bi text-danger"></i></a>
+                                    </p>
+                                    <p class="mx-2" *ngIf="user_details.audiomack">
+                                        <a href="{{user_details.audiomack}}" target="_blank"><i
+                                                class="bi-activity bi text-warning"></i></a>
+                                    </p>
+                                    <p class="mx-2" *ngIf="user_details.boomplay">
+                                        <a href="{{user_details.boomplay}}" target="_blank"><i
+                                                class="bi-currency-bitcoin bi text-primary"></i></a>
+                                    </p>
+                                    <p class="mx-2" *ngIf="user_details.spotify">
+                                        <a href="{{user_details.spotify}}" target="_blank"><i
+                                                class="bi-spotify bi text-success"></i></a>
                                     </p>
                                 </div>
                             </div>
@@ -172,13 +188,6 @@
                                         <div class="p-2">{{user_details.genre}}</div>
                                     </div>
                                     <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
-                                        <div class="p-2">Company</div>
-                                    </div>
-                                    <div
-                                        class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                                        <div class="p-2">GitHub Inc</div>
-                                    </div>
-                                    <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
                                         <div class="p-2">Phone</div>
                                     </div>
                                     <div
@@ -220,6 +229,50 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- View short details of created post  -->
+    <div class="mt-4">
+        <p class="h3 fw-bold text-center">Created Gigs</p>
+        <ul class="list-group mx-1" *ngFor="let gig of myGigs">
+            <li class="list-item p-0 m-0 my-2">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between">
+                        <p>{{gig.title}}</p>
+                        <p>{{gig.date | date: dateTimeService.formatedDAte }}</p>
+                        <p>{{gig.time | timeFormat}}</p>
+                        <button class="btn-transparent btn border-0"><i class="bi bi-three-dots-vertical"></i></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- View short details of created post  -->
+    <div class="mt-4">
+        <p class="h3 fw-bold text-center">Created Vacancies</p>
+        <ul class="list-group mx-1">
+            <li class="list-item p-0 m-0 my-2">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between">
+                        <p>Vacancy Title</p>
+                        <p>Vacancy Date</p>
+                        <p>Vacancy Time</p>
+                        <button class="btn-transparent btn border-0"><i class="bi bi-three-dots-vertical"></i></button>
+                    </div>
+                </div>
+            </li>
+            <li class="list-item p-0 m-0 my-2">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between">
+                        <p>Vacancy Title</p>
+                        <p>Vacancy Date</p>
+                        <p>Vacancy Time</p>
+                        <button class="btn-transparent btn border-0"><i class="bi bi-three-dots-vertical"></i></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
 </section>

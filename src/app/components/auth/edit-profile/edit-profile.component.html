@@ -3,7 +3,8 @@
         <div class="row gy-2">
             <label class="col-12 form-label m-0">Profile Image</label>
             <div class="col-12 d-flex justify-content-center">
-                <img src="{{userPicture}}" class="img-fluid" alt="{{userPicture}}">
+                <img [src]="userPicture" alt="{{userPicture}}" height="250" width="250" class=" image-fluid rounded">
+                <!-- <img src="{{userPicture}}" class="img-fluid" alt="{{userPicture}}"> -->
             </div>
             <div class="col-12">
                 <form class="d-flex justify-content-center">
@@ -20,7 +21,8 @@
     <form [formGroup]="updateForm" (ngSubmit)="updateDetails()">
         <div class="col-12 col-md-6">
             <label for="inputFirstName" class="form-label">Contact</label>
-            <input type="text" class="form-control" formControlName="contact" placeholder="11(08192938473) or 14(+2348102938475)">
+            <input type="text" class="form-control" formControlName="contact"
+                placeholder="11(08192938473) or 14(+2348102938475)">
         </div>
         <div class="col-12 col-md-6">
             <label for="inputLastName" class="form-label">Genre</label>
@@ -28,7 +30,8 @@
         </div>
         <div class="col-12 col-md-6">
             <label for="inputEducation" class="form-label">Awards</label>
-            <input type="text" class="form-control" formControlName="awards" placeholder="Best Musician => African Gospel Songs">
+            <input type="text" class="form-control" formControlName="awards"
+                placeholder="Best Musician => African Gospel Songs">
         </div>
         <div class="col-12 col-md-6">
             <label for="location" class="form-label">Location</label>
@@ -74,11 +77,12 @@
                 <input type="text" class="form-control" formControlName="youtube"
                     placeholder="https://www.youtube.com/username">
             </div>
-            <div class="col-12 col-md-6">
-                <label for="inputX" class="form-label">X / Twitter</label>
-                <input type="text" class="form-control" formControlName="twitter"
-                    placeholder="https://www.twitter.com/username">
-            </div>
+
+            <!-- <div class="col-12 col-md-6">
+                <label for="linkedin" class="form-label">Linkedin</label>
+                <input type="text" class="form-control" formControlName="linkedin"
+                    placeholder="https://www.linkedin.com/username">
+            </div> -->
             <div class="col-12 col-md-6">
                 <label for="inputFacebook" class="form-label">Tiktok</label>
                 <input type="text" class="form-control" formControlName="tiktok"
