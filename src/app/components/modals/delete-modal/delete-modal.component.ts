@@ -1,8 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ApiService } from '../../core-module/services/api.service';
 import { AppToastService } from '../../core-module/services/app-toast.service';
+import { AuthService } from '../../core-module/services/auth.service';
+import { DatetimeService } from '../../core-module/services/datetime.service';
 import { ModalService } from '../../core-module/services/modal.service';
+import { UserService } from '../../core-module/services/user.service';
 
 @Component({
   selector: 'app-delete-modal',
@@ -17,12 +21,22 @@ export class DeleteModalComponent {
   private apiService = inject(ApiService);
   private router = inject(Router);
   private modalService = inject(ModalService);
+  private authService = inject(AuthService);
+  private userService = inject(UserService);
+  public dateTimeService = inject(DatetimeService);
+  private cookieService = inject(CookieService);
 
   deleteNow() {
     this.apiService.delete('user/delete')
       .then(response => {
         this.toastService.show('Success!', `${response.data.message}`, 5000, 'bg-success text-white');
         this.modalService.closeModal();
+        this.authService.signOut();
+        this.cookieService.deleteAll();
+        localStorage.clear();
+        sessionStorage.clear();
+        this.userService.reset();
+        localStorage.removeItem('token');
         setTimeout(() => {
           this.router.navigate(['auth/register']);
         }, 3000);

@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { CookieService } from "ngx-cookie-service";
 import { User } from "../../core-module/models/user.model";
 import { TimeFormatPipe } from '../../core-module/pipes/time-format.pipe';
 import { ApiService } from '../../core-module/services/api.service';
@@ -48,6 +49,7 @@ export class ProfileComponent implements OnInit {
   private userService = inject(UserService);
   private modalService = inject(ModalService);
   public dateTimeService = inject(DatetimeService);
+  private cookieService = inject(CookieService);
 
   constructor() {
     // this.userService.getAllmyEvents()
@@ -82,9 +84,6 @@ export class ProfileComponent implements OnInit {
     this.userService.vacancyCountNumber$.subscribe(vacanciesnumber => {
       this.vacancyNumber = vacanciesnumber;
     });
-
-
-
   }
 
 
@@ -94,16 +93,20 @@ export class ProfileComponent implements OnInit {
     this.loadUserDetails();
   }
 
-  loadUserDetails() {
+
+  async loadUserDetails() {
     const token = this.authService.getLocaleStorage();
     if (!token) {
       this.toastService.error('Error!', `Login first`, 5000, 'bg-danger text-white');
       this.router.navigate(['auth/login']);
     }
 
-    this.apiService.get('user/me')
-      .then(response => {
-        this.user_details = response.data.user;
+    await this.apiService.get('user/me')
+      .then(async response => {
+        setTimeout(async () => {
+          this.user_details = await response.data.user;
+
+        }, 3000);
       })
       .catch(error => {
         if (error.response.data) {

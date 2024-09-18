@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { PostGigsComponent } from '../../auth/post-gigs/post-gigs.component';
+import { PostVacanciesComponent } from '../../auth/post-vacancies/post-vacancies.component';
 import { ModalService } from '../../core-module/services/modal.service';
 
 @Component({
@@ -19,15 +21,16 @@ export class CreateModalComponent {
 
     switch (selectedOption) {
       case 'vacancy':
-        this.router.navigate(['create-vacancy']);
+        this.modalService.closeModal();
+        this.modalService.openModal(PostVacanciesComponent);
         break;
       case 'gig':
-        this.router.navigate(['create-gig']);
+        this.modalService.closeModal();
+        this.modalService.openModal(PostGigsComponent);
         break;
       default:
         break;
     }
 
-    this.modalService.closeModal();
   }
 }

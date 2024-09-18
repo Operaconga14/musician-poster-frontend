@@ -61,8 +61,8 @@ export const routes: Routes = [
     //     path: 'privacy-policy',
     //     loadComponent: () => import('./components/feature-module/policy/policy.component').then(c => c.PolicyComponent)
     // },
-    {
-        path: 'create-gig',
-        loadComponent: () => import('./components/auth/post-gigs/post-gigs.component').then(c => c.PostGigsComponent)
-    }
+    // {
+    //     path: 'create-gig',
+    //     loadComponent: () => import('./components/auth/post-gigs/post-gigs.component').then(c => c.PostGigsComponent)
+    // }
 ];
