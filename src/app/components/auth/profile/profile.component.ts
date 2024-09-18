@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import axios from 'axios';
 import { User } from "../../core-module/models/user.model";
 import { TimeFormatPipe } from '../../core-module/pipes/time-format.pipe';
@@ -9,10 +10,12 @@ import { ApiService } from '../../core-module/services/api.service';
 import { AppToastService } from '../../core-module/services/app-toast.service';
 import { AuthService } from '../../core-module/services/auth.service';
 import { DatetimeService } from '../../core-module/services/datetime.service';
+import { Gigservice } from '../../core-module/services/gigs.service';
 import { ModalService } from '../../core-module/services/modal.service';
 import { UserService } from '../../core-module/services/user.service';
 import { CreateModalComponent } from '../../modals/create-modal/create-modal.component';
 import { DeleteModalComponent } from '../../modals/delete-modal/delete-modal.component';
+import { GigsModalComponent } from '../../modals/gigs-modal/gigs-modal.component';
 import { ChangePasswordComponent } from "../change-password/change-password.component";
 import { EditProfileComponent } from "../edit-profile/edit-profile.component";
 
@@ -20,7 +23,7 @@ axios.defaults.withCredentials = true;
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, EditProfileComponent, ChangePasswordComponent, CommonModule, TimeFormatPipe],
+  imports: [ReactiveFormsModule, EditProfileComponent, ChangePasswordComponent, CommonModule, TimeFormatPipe, NgbDropdownModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
@@ -39,6 +42,7 @@ export class ProfileComponent implements OnInit {
   vacancyNumber: any;
   myGigs: any;
   myVacancy: any;
+  updateGigForm: FormGroup;
 
 
   private authService = inject(AuthService);
@@ -48,6 +52,7 @@ export class ProfileComponent implements OnInit {
   private userService = inject(UserService);
   private modalService = inject(ModalService);
   public dateTimeService = inject(DatetimeService);
+  public gigService = inject(Gigservice);
 
   constructor() {
     // this.userService.getAllmyEvents()
@@ -82,6 +87,17 @@ export class ProfileComponent implements OnInit {
     this.userService.vacancyCountNumber$.subscribe(vacanciesnumber => {
       this.vacancyNumber = vacanciesnumber;
     });
+
+    this.updateGigForm = new FormGroup({
+      type: new FormControl(''),
+      description: new FormControl(''),
+      contact: new FormControl(''),
+      time: new FormControl(''),
+      date: new FormControl(''),
+      location: new FormControl(''),
+      instruments: new FormControl(''),
+      price: new FormControl('')
+    });
   }
 
 
@@ -100,7 +116,7 @@ export class ProfileComponent implements OnInit {
     }
 
     this.apiService.get('user/me')
-      .then( response => {
+      .then(response => {
         this.user_details = response.data.user;
       })
       .catch(error => {
@@ -131,5 +147,73 @@ export class ProfileComponent implements OnInit {
   showCreateOptionModal() {
     this.modalService.openModal(CreateModalComponent);
   }
+
+  getGigId(id: any) {
+    console.log(' id: ', id);
+    this.gigService.getGigsDetail(id);
+    this.modalService.openModal(GigsModalComponent);
+  }
+
+
+  deleteGig(id: any) {
+    console.log('Gig Id to Delete: ', id);
+    this.apiService.delete(`gig/delete/${id}`)
+      .then(async response => {
+        this.toastService.show('Success', `${response.data.message}`, 5000, 'bg-success text-white');
+        location.reload();
+      })
+      .catch(error => {
+        if (error.response.data) {
+          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white');
+        }
+
+        if (Array.isArray(error.response.data.error.errors)) {
+          error.response.data.error.errors.forEach((err: any) => {
+            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white');
+          });
+        }
+      });
+  }
+
+  updateGig(id: any) {
+    const updatedPayload = this.getGigFilledFields();
+
+    if (Object.keys(updatedPayload).length === 0) {
+      this.toastService.error('Error!', 'No field to update', 5000, 'bg-danger text-white');
+      return;
+    }
+    this.apiService.update(`gig/update/${id}`, updatedPayload)
+      .then(async response => {
+        this.toastService.show('Success', `${response.data.message}`, 5000, 'bg-success text-white');
+        location.reload();
+      })
+      .catch(error => {
+        if (error.response.data) {
+          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white');
+        }
+
+        if (Array.isArray(error.response.data.error.errors)) {
+          error.response.data.error.errors.forEach((err: any) => {
+            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white');
+          });
+        }
+      });
+
+  }
+
+  getGigFilledFields() {
+    const filedFields: any = {};
+
+    // get the current form value
+    const formValue = this.updateGigForm.value;
+
+    Object.keys(formValue).forEach(key => {
+      if (formValue[key] && formValue[key].trim() !== '') {
+        filedFields[key] = formValue[key];
+      }
+    });
+    return filedFields;
+  }
+
 
 }

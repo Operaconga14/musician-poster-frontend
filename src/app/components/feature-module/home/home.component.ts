@@ -27,32 +27,32 @@ import { VacancyModalComponent } from '../../modals/vacancy-modal/vacancy-modal.
 })
 
 export class HomeComponent implements OnInit {
-  isDarkTheme: boolean = false
-  showNavigationArrow = false
+  isDarkTheme: boolean = false;
+  showNavigationArrow = false;
 
   images = [
     `https://res.cloudinary.com/defmlxshw/image/upload/banner9_htcdkg.jpg`,
     `https://res.cloudinary.com/defmlxshw/image/upload/banner8_n5v1g2.jpg`,
     `https://res.cloudinary.com/defmlxshw/image/upload/banner6_nmdyff.jpg`,
     `https://res.cloudinary.com/defmlxshw/image/upload/banner1_otootu.jpg`
-  ]
-  newEvents: any
-  newGigs: any
-  newVacancies: any
-  newGadgets: any
-  newServices: any
-  contributors: any
-  dbDateTime: any
-  formattedDate: any
-  formatedTime: any
+  ];
+  newEvents: any;
+  newGigs: any;
+  newVacancies: any;
+  newGadgets: any;
+  newServices: any;
+  contributors: any;
+  dbDateTime: any;
+  formattedDate: any;
+  formatedTime: any;
 
-  private eventService = inject(EventsService)
-  private modalService = inject(ModalService)
-  private gigService = inject(Gigservice)
-  private vacancyService = inject(VacanciesService)
-  private contributorService = inject(ContributorsService)
-  public dateTimeService = inject(DatetimeService)
-  private themeService = inject(ThemeService)
+  private eventService = inject(EventsService);
+  private modalService = inject(ModalService);
+  private gigService = inject(Gigservice);
+  private vacancyService = inject(VacanciesService);
+  private contributorService = inject(ContributorsService);
+  public dateTimeService = inject(DatetimeService);
+  private themeService = inject(ThemeService);
 
   constructor(config: NgbCarouselConfig) {
     // customize default values of carousels used by this component tree
@@ -60,63 +60,63 @@ export class HomeComponent implements OnInit {
     config.wrap = false;
     config.keyboard = false;
     config.pauseOnHover = false;
-    config.wrap = true
+    config.wrap = true;
   }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     // get new gigs
-    this.gigService.getnewGigs()
+    this.gigService.getnewGigs();
     this.gigService.newGigsList$.subscribe(newgigs => {
-      this.newGigs = newgigs
-      this.formatedTime = this.dateTimeService.fromatTime(this.newGigs.time)
-    })
+      this.newGigs = newgigs;
+      this.formatedTime = this.dateTimeService.fromatTime(this.newGigs.time);
+    });
     // get new events
-    this.eventService.getnewEvents()
+    this.eventService.getnewEvents();
     this.eventService.newEventsList$.subscribe(newevents => {
-      this.newEvents = newevents
-    })
+      this.newEvents = newevents;
+    });
     // getr new vacancies
-    this.vacancyService.getnewVacancies()
+    this.vacancyService.getnewVacancies();
     this.vacancyService.newVacanciesList$.subscribe(newvacancies => {
-      this.newVacancies = newvacancies
-    })
+      this.newVacancies = newvacancies;
+    });
     // get all contributors
-    this.contributors = this.contributorService.contributors
+    this.contributors = this.contributorService.contributors;
     // change theme
-    this.themeService.currentTheme.subscribe(theme => this.isDarkTheme = theme)
+    this.themeService.currentTheme.subscribe(theme => this.isDarkTheme = theme);
   }
 
 
   getEventId(id: any) {
-    this.eventService.getEventDetail(id)
-    this.modalService.openModal(EventModalComponent)
+    this.eventService.getEventDetail(id);
+    this.modalService.openModal(EventModalComponent);
   }
 
   getGigId(id: any) {
-    this.gigService.getGigsDetail(id)
-    this.modalService.openModal(GigsModalComponent)
+    this.gigService.getGigsDetail(id);
+    this.modalService.openModal(GigsModalComponent);
   }
 
   getVacancyId(id: any) {
-    this.vacancyService.getVacancyDetail(id)
-    this.modalService.openModal(VacancyModalComponent)
+    this.vacancyService.getVacancyDetail(id);
+    this.modalService.openModal(VacancyModalComponent);
   }
 
   getGadgetId(id: any) {
-    this.gigService.getGigsDetail(id)
-    this.modalService.openModal(GadgetModalComponent)
+    this.gigService.getGigsDetail(id);
+    this.modalService.openModal(GadgetModalComponent);
   }
 
   getPostId(id: any) {
-    this.gigService.getGigsDetail(id)
-    this.modalService.openModal(PostModalComponent)
+    this.gigService.getGigsDetail(id);
+    this.modalService.openModal(PostModalComponent);
   }
 
   getServiceId(id: any) {
-    this.gigService.getGigsDetail(id)
-    this.modalService.openModal(ServiceModalComponent)
+    this.gigService.getGigsDetail(id);
+    this.modalService.openModal(ServiceModalComponent);
   }
 
 

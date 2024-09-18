@@ -8,7 +8,7 @@ import { ApiService } from './api.service';
 export class Gigservice {
 
 
-  private apiService = inject(ApiService)
+  private apiService = inject(ApiService);
 
   private gigsDetailSource = new BehaviorSubject<any>(null);
   private allGigsource = new BehaviorSubject<any[]>([]);
@@ -20,7 +20,7 @@ export class Gigservice {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.getnewGigs()
+    this.getnewGigs();
   }
 
   setGigsDetail(gigsDetail: any) {
@@ -28,18 +28,18 @@ export class Gigservice {
   }
 
   setNewGigs(newGigs: any) {
-    this.newGigsource.next(newGigs)
+    this.newGigsource.next(newGigs);
   }
 
   setAllGigs(allGigs: any) {
-    this.allGigsource.next(allGigs)
+    this.allGigsource.next(allGigs);
   }
 
   public async getGigsDetail(id: any) {
     try {
-      const response = await this.apiService.get(`gig/gigs/${id}`)
+      const response = await this.apiService.get(`gig/gigs/${id}`);
       if (response.data && response.data.gigs) {
-        this.setGigsDetail(response.data.gigs)
+        this.setGigsDetail(response.data.gigs);
         // Trigger modal opening here
       }
     } catch (error) {
@@ -49,21 +49,21 @@ export class Gigservice {
 
   public async getnewGigs() {
     try {
-      const newgigs = await this.apiService.get('gig/newgigs')
+      const newgigs = await this.apiService.get('gig/newgigs');
       if (newgigs.data && newgigs.data.gig) {
-        this.setNewGigs(newgigs.data.gig)
+        this.setNewGigs(newgigs.data.gig);
 
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 
   public async getAllGigs() {
     try {
-      const allgigs = await this.apiService.get('gig/gigs')
+      const allgigs = await this.apiService.get('gig/gigs');
       if (allgigs.data && allgigs.data.gigs) {
-        this.setAllGigs(allgigs.data.gigs)
+        this.setAllGigs(allgigs.data.gigs);
       }
     } catch (error) {
 

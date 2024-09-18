@@ -1,0 +1,33 @@
+.dropdown-toggle::after {
+    display: none;
+    /* Hides the default triangle icon */
+}
+
+/* styles.css */
+.fullscreen-dropdown {
+    position: fixed;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: 0;
+    margin-left: -150px;
+    margin-right: -15px;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+    background-color: inherit !important;
+}
+
+// .fullscreen-dropdown button {
+//     margin: 10px;
+//     /* Space between dropdown items */
+//     background-color: #007bff;
+//     border: none;
+//     color: white;
+//     padding: 15px 30px;
+//     font-size: 20px;
+//     cursor: pointer;
+// }

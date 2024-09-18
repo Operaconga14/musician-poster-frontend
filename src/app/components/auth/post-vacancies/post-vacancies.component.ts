@@ -28,7 +28,6 @@ export class PostVacanciesComponent {
       type: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       contact: new FormControl('', [Validators.required]),
-      time: new FormControl('', [Validators.required]),
       date: new FormControl('', Validators.required)
     });
   }
@@ -42,16 +41,21 @@ export class PostVacanciesComponent {
     }
     this.apiService.post('vacancy/create', this.vacancyForm.value)
       .then(async response => {
+        this.modalService.closeModal();
         this.toastService.show('Success!', `${response.data.message}`, 5000, 'bg-success text-white');
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
       })
       .catch(error => {
-        console.log("Error: ", error.response.data);
         if (error.response.data) {
+          this.modalService.closeModal();
           this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white');
         }
 
         if (Array.isArray(error.response.data.error.errors)) {
           error.response.data.error.errors.forEach((err: any) => {
+            this.modalService.closeModal();
             this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white');
           });
         }
