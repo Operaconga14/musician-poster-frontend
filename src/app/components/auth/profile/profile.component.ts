@@ -92,16 +92,16 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  async loadUserDetails() {
+  loadUserDetails() {
     const token = this.authService.getLocaleStorage();
     if (!token) {
       this.toastService.error('Error!', `Login first`, 5000, 'bg-danger text-white');
       this.router.navigate(['auth/login']);
     }
 
-    await this.apiService.get('user/me')
-      .then(async response => {
-        this.user_details = await response.data.user;
+    this.apiService.get('user/me')
+      .then( response => {
+        this.user_details = response.data.user;
       })
       .catch(error => {
         if (error.response.data) {
