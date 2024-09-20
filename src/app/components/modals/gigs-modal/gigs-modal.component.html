@@ -1,1 +1,135 @@
-<p>gigs-modal works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">{{gigDetails.title}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalService.closeModal()"></button>
+</div>
+<div class="modal-body m-0 p-0">
+    <div class="border border-2 border-top-0 shadow-sm">
+    </div>
+
+    <div class="modal-body">
+        <!-- location -->
+        <div class="">
+            <!-- <p class="small m-0 text-center">Gig Title: </p> -->
+            <p class="small">{{gigDetails.type}}</p>
+        </div>
+        <!-- gig Genre -->
+        <div class="mt-0">
+            <!-- <p class="small mb-1 m-0">Description: </p> -->
+            <p class="small">{{gigDetails.description}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Date: </p>
+            <p class="small">{{gigDetails.date | date: dateTimeService.formatedDAte}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2">
+            <p class="small m-0">Location: </p>
+            <p class="small">{{gigDetails.location}}</p>
+        </div>
+
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Price: </p>
+            <p class="small">{{gigDetails.price}}</p>
+        </div>
+
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Instrument(s): </p>
+            <p class="small">{{gigDetails.instruments}}</p>
+        </div>
+
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Time: </p>
+            <p class="small">{{gigDetails.time | timeFormat}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Contact: </p>
+            <p class="small">{{gigDetails.contact}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Posted By: </p>
+            <p class="small">{{gigDetails.postedBy}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Date Posted: </p>
+            <p class="small">{{gigDetails.createdAt | date: dateTimeService.formatedDAte}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Date Updated: </p>
+            <p class="small">{{gigDetails.updatedAt | date: dateTimeService.formatedDAte}}</p>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalService.closeModal()">Close</button>
+</div>
+
+
+<!-- <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let gig of newGigs">
+    <div class="card w-100">
+        <div class="card-header p-0 m-0 rounded">
+            <a [href]="gig.image">
+                <img [src]="gig.imageUrl" *ngIf="gig.imageUrl" alt="" height="200" width="200"
+                    class=" image-fluid rounded">
+            </a>
+        </div>
+        <div class="card-body"> -->
+<!-- location -->
+<!-- <div class=""> -->
+<!-- <p class="small m-0 text-center">Gig Title: </p> -->
+<!-- <p class="small">{{gig.type}}</p>
+            </div> -->
+<!-- gig Genre -->
+<!-- <div class="mt-0"> -->
+<!-- <p class="small mb-1 m-0">Description: </p> -->
+<!-- <p class="small">{{gig.description}}</p>
+            </div> -->
+<!-- gig availability -->
+<!-- <div class=" mt-2 d-flex justify-content-between">
+                <p class="small m-0">Date: </p>
+                <p class="small">{{gig.date | date: dateTimeService.formatedDAte}}</p>
+            </div> -->
+<!-- gig availability -->
+<!-- <div class=" mt-2">
+                <p class="small m-0">Loication: </p>
+                <p class="small">{{gig.location}}</p>
+            </div> -->
+<!-- gig availability -->
+<!-- <div class=" mt-2 d-flex justify-content-between">
+                <p class="small m-0">Time: </p>
+                <p class="small">{{gig.time | timeFormat}}</p>
+            </div> -->
+<!-- gig availability -->
+<!-- <div class=" mt-2 d-flex justify-content-between">
+                <p class="small m-0">Contact: </p>
+                <p class="small">{{gig.contact}}</p>
+            </div> -->
+<!-- gig availability -->
+<!-- <div class=" mt-2 d-flex justify-content-between">
+                <p class="small m-0">Posted By: </p>
+                <p class="small">{{gig.postedBy}}</p>
+            </div> -->
+<!-- gig availability -->
+<!-- <div class=" mt-2 d-flex justify-content-between">
+                <p class="small m-0">Date Posted: </p>
+                <p class="small">{{gig.createdAt | date: dateTimeService.formatedDAte}}</p>
+            </div> -->
+<!-- gig availability -->
+<!-- <div class=" mt-2 d-flex justify-content-between">
+                <p class="small m-0">Date Updated: </p>
+                <p class="small">{{gig.updatedAt | date: dateTimeService.formatedDAte}}</p>
+            </div>
+            <div class="text-center mt-3">
+                <button class="btn-dark btn text-white" (click)="getGigDetail(gig.id)">
+                    Full Description
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div> -->

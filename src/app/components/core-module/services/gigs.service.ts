@@ -35,18 +35,6 @@ export class Gigservice {
     this.allGigsource.next(allGigs);
   }
 
-  public async getGigsDetail(id: any) {
-    try {
-      const response = await this.apiService.get(`gig/gigs/${id}`);
-      if (response.data && response.data.gigs) {
-        this.setGigsDetail(response.data.gigs);
-        // Trigger modal opening here
-      }
-    } catch (error) {
-
-    }
-  }
-
   public async getnewGigs() {
     try {
       const newgigs = await this.apiService.get('gig/newgigs');

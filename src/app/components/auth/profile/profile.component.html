@@ -253,7 +253,7 @@
                             <button class="btn-transparent btn border-0 btn-sm" ngbDropdownToggle><i
                                     class="bi bi-three-dots-vertical"></i></button>
                             <div ngbDropdownMenu>
-                                <button ngbDropdownItem (click)="gigService.getGigsDetail(gig.id)">View</button>
+                                <button ngbDropdownItem (click)="getGigDetail(gig.id)">View</button>
                                 <!-- <button ngbDropdownItem>Edit</button> -->
                                 <div ngbDropdown>
                                     <button class="ms-1 btn-outline-transparent btn border-0" ngbDropdownToggle>
@@ -331,7 +331,7 @@
                                                 </div>
                                                 <div class=" button mt-3 d-flex justify-content-between">
                                                     <button class="form-rounded btn-secondary btn"
-                                                        type="submit">Create</button>
+                                                        type="submit">Update</button>
                                                     <!-- <button class="form-rounded btn-outline-secondary btn"
                                                         type="button">Cancel</button> -->
                                                 </div>

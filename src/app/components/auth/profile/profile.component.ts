@@ -23,7 +23,7 @@ axios.defaults.withCredentials = true;
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, EditProfileComponent, ChangePasswordComponent, CommonModule, TimeFormatPipe, NgbDropdownModule],
+  imports: [ReactiveFormsModule, EditProfileComponent, ChangePasswordComponent, CommonModule, TimeFormatPipe, NgbDropdownModule, TimeFormatPipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
@@ -148,11 +148,6 @@ export class ProfileComponent implements OnInit {
     this.modalService.openModal(CreateModalComponent);
   }
 
-  getGigId(id: any) {
-    this.gigService.getGigsDetail(id);
-    this.modalService.openModal(GigsModalComponent);
-  }
-
 
   deleteGig(id: any) {
     this.apiService.delete(`gig/delete/${id}`)
@@ -183,7 +178,9 @@ export class ProfileComponent implements OnInit {
     this.apiService.update(`gig/update/${id}`, updatedPayload)
       .then(async response => {
         this.toastService.show('Success', `${response.data.message}`, 5000, 'bg-success text-white');
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
       })
       .catch(error => {
         if (error.response.data) {
@@ -213,5 +210,13 @@ export class ProfileComponent implements OnInit {
     return filedFields;
   }
 
+  async getGigDetail(id: any) {
+    this.apiService.get(`gig/gig/${id}`)
+      .then(async response => {
+        console.log("Gig details", response);
+        this.gigService.setGigsDetail(response.data.gig);
+        this.modalService.openModal(GigsModalComponent);
+      });
+  }
 
 }

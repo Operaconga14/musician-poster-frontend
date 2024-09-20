@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { TimeFormatPipe } from '../../core-module/pipes/time-format.pipe';
+import { ApiService } from '../../core-module/services/api.service';
 import { ContributorsService } from '../../core-module/services/contributors.service';
 import { DatetimeService } from '../../core-module/services/datetime.service';
 import { EventsService } from '../../core-module/services/events.service';
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
   private eventService = inject(EventsService);
   private modalService = inject(ModalService);
   private gigService = inject(Gigservice);
+  private apiService = inject(ApiService);
   private vacancyService = inject(VacanciesService);
   private contributorService = inject(ContributorsService);
   public dateTimeService = inject(DatetimeService);
@@ -94,28 +96,30 @@ export class HomeComponent implements OnInit {
     this.modalService.openModal(EventModalComponent);
   }
 
-  getGigId(id: any) {
-    this.gigService.getGigsDetail(id);
-    this.modalService.openModal(GigsModalComponent);
+  async getGigDetail(id: any) {
+    this.apiService.get(`gig/gig/${id}`)
+      .then(async response => {
+        this.gigService.setGigsDetail(response.data.gig);
+        this.modalService.openModal(GigsModalComponent);
+      });
   }
-
   getVacancyId(id: any) {
-    this.vacancyService.getVacancyDetail(id);
+
     this.modalService.openModal(VacancyModalComponent);
   }
 
   getGadgetId(id: any) {
-    this.gigService.getGigsDetail(id);
+
     this.modalService.openModal(GadgetModalComponent);
   }
 
   getPostId(id: any) {
-    this.gigService.getGigsDetail(id);
+
     this.modalService.openModal(PostModalComponent);
   }
 
   getServiceId(id: any) {
-    this.gigService.getGigsDetail(id);
+
     this.modalService.openModal(ServiceModalComponent);
   }
 
