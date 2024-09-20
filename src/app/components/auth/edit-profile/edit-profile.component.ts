@@ -86,8 +86,6 @@ export class EditProfileComponent {
   }
 
   updateDetails() {
-    console.log("Detals: ", this.updateForm.value);
-
     const updatedPayload = this.getFilledFields();
 
     if (Object.keys(updatedPayload).length === 0) {
@@ -130,7 +128,6 @@ export class EditProfileComponent {
   // Angular service example
   uploadImage() {
     if (!this.selectedFile) {
-      console.log('No file selected');
       this.toastService.error('Error!', 'Please select a file to upload.', 5000, 'bg-danger text-white');
       return;
     }
@@ -140,7 +137,6 @@ export class EditProfileComponent {
 
     this.apiService.update('user/picture', formData) // Ensure this matches your Express route
       .then(response => {
-        console.log(response.data);
         this.toastService.show('Success!', 'Your image has been uploaded.', 5000, 'bg-success text-white');
         setTimeout(() => {
           location.reload();

@@ -116,8 +116,8 @@ export class ProfileComponent implements OnInit {
     }
 
     this.apiService.get('user/me')
-      .then(response => {
-        this.user_details = response.data.user;
+      .then(async response => {
+        this.user_details = await response.data.user;
       })
       .catch(error => {
         if (error.response.data) {
@@ -149,14 +149,12 @@ export class ProfileComponent implements OnInit {
   }
 
   getGigId(id: any) {
-    console.log(' id: ', id);
     this.gigService.getGigsDetail(id);
     this.modalService.openModal(GigsModalComponent);
   }
 
 
   deleteGig(id: any) {
-    console.log('Gig Id to Delete: ', id);
     this.apiService.delete(`gig/delete/${id}`)
       .then(async response => {
         this.toastService.show('Success', `${response.data.message}`, 5000, 'bg-success text-white');
