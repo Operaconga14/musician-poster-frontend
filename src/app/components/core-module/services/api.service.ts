@@ -33,24 +33,38 @@ export class ApiService {
   // http post method
   post(path: any, data: any): Promise<AxiosResponse<any>> {
     const token = localStorage.getItem('token');
+    // / Check if the data is FormData and don't set Content-Type for it;
+    const headers: any = {
+      'Authorization': `Bearer ${token}`, // Add token to Authorization header
+    };
+
+    // Only set Content-Type if the data is not FormData
+    if (!(data instanceof FormData)) {
+      headers['Content-Type'] = 'application/json';
+    }
+
     return axios.post(`${this.server}${path}`, data, {
-      withCredentials: true,
-      headers: {
-        'Authorization': `Bearer ${token}`, // Add token to Authorization header
-        'Content-Type': 'application/json',
-      }
+      withCredentials: true, // Send cookies if needed
+      headers: headers
     });
   }
 
   // update http method
   update(path: any, data: any): Promise<AxiosResponse<any>> {
     const token = localStorage.getItem('token');
+    // Check if the data is FormData and don't set Content-Type for it
+    const headers: any = {
+      'Authorization': `Bearer ${token}`, // Add token to Authorization header
+    };
+
+    // Only set Content-Type if the data is not FormData
+    if (!(data instanceof FormData)) {
+      headers['Content-Type'] = 'application/json';
+    }
+
     return axios.put(`${this.server}${path}`, data, {
-      withCredentials: true,
-      headers: {
-        'Authorization': `Bearer ${token}`, // Add token to Authorization header
-        'Content-Type': 'application/json',
-      }
+      withCredentials: true, // Send cookies if needed
+      headers: headers
     });
   }
 
