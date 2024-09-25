@@ -13,9 +13,11 @@ import { DatetimeService } from '../../core-module/services/datetime.service';
 import { Gigservice } from '../../core-module/services/gigs.service';
 import { ModalService } from '../../core-module/services/modal.service';
 import { UserService } from '../../core-module/services/user.service';
+import { VacanciesService } from '../../core-module/services/vacancies.service';
 import { CreateModalComponent } from '../../modals/create-modal/create-modal.component';
 import { DeleteModalComponent } from '../../modals/delete-modal/delete-modal.component';
 import { GigsModalComponent } from '../../modals/gigs-modal/gigs-modal.component';
+import { VacancyModalComponent } from '../../modals/vacancy-modal/vacancy-modal.component';
 import { ChangePasswordComponent } from "../change-password/change-password.component";
 import { EditProfileComponent } from "../edit-profile/edit-profile.component";
 
@@ -43,6 +45,8 @@ export class ProfileComponent implements OnInit {
   myGigs: any;
   myVacancy: any;
   updateGigForm: FormGroup;
+  updateVacancyForm: FormGroup;
+
 
 
   private authService = inject(AuthService);
@@ -53,6 +57,7 @@ export class ProfileComponent implements OnInit {
   private modalService = inject(ModalService);
   public dateTimeService = inject(DatetimeService);
   public gigService = inject(Gigservice);
+  public vacancyService = inject(VacanciesService)
 
   constructor() {
     // this.userService.getAllmyEvents()
@@ -89,6 +94,17 @@ export class ProfileComponent implements OnInit {
     });
 
     this.updateGigForm = new FormGroup({
+      type: new FormControl(''),
+      description: new FormControl(''),
+      contact: new FormControl(''),
+      time: new FormControl(''),
+      date: new FormControl(''),
+      location: new FormControl(''),
+      instruments: new FormControl(''),
+      price: new FormControl('')
+    });
+
+    this.updateVacancyForm = new FormGroup({
       type: new FormControl(''),
       description: new FormControl(''),
       contact: new FormControl(''),
@@ -168,6 +184,25 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  deleteVacancy(id: any) {
+    this.apiService.delete(`vacancy/delete/${id}`)
+      .then(async response => {
+        this.toastService.show('Success', `${response.data.message}`, 5000, 'bg-success text-white');
+        location.reload();
+      })
+      .catch(error => {
+        if (error.response.data) {
+          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white');
+        }
+
+        if (Array.isArray(error.response.data.error.errors)) {
+          error.response.data.error.errors.forEach((err: any) => {
+            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white');
+          });
+        }
+      });
+  }
+
   updateGig(id: any) {
     const updatedPayload = this.getGigFilledFields();
 
@@ -196,6 +231,50 @@ export class ProfileComponent implements OnInit {
 
   }
 
+
+  updateVacancy(id: any) {
+    const updatedPayload = this.getVacancyFilledFields();
+
+    if (Object.keys(updatedPayload).length === 0) {
+      this.toastService.error('Error!', 'No field to update', 5000, 'bg-danger text-white');
+      return;
+    }
+    this.apiService.update(`vacancy/update/${id}`, updatedPayload)
+      .then(async response => {
+        this.toastService.show('Success', `${response.data.message}`, 5000, 'bg-success text-white');
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
+      })
+      .catch(error => {
+        if (error.response.data) {
+          this.toastService.error('Error!', `${error.response.data.message}`, 5000, 'bg-danger text-white');
+        }
+
+        if (Array.isArray(error.response.data.error.errors)) {
+          error.response.data.error.errors.forEach((err: any) => {
+            this.toastService.error('Error!', `${err.message || err}`, 5000, 'bg-danger text-white');
+          });
+        }
+      });
+
+  }
+
+  getVacancyFilledFields() {
+    const filedFields: any = {};
+
+    // get the current form value
+    const formValue = this.updateVacancyForm.value;
+
+    Object.keys(formValue).forEach(key => {
+      if (formValue[key] && formValue[key].trim() !== '') {
+        filedFields[key] = formValue[key];
+      }
+    });
+    return filedFields;
+  }
+
+
   getGigFilledFields() {
     const filedFields: any = {};
 
@@ -216,6 +295,15 @@ export class ProfileComponent implements OnInit {
         console.log("Gig details", response);
         this.gigService.setGigsDetail(response.data.gig);
         this.modalService.openModal(GigsModalComponent);
+      });
+  }
+
+  async getvacancyDetail(id: any) {
+    this.apiService.get(`vacancy/vacancy/${id}`)
+      .then(async response => {
+        console.log("Vacancy details", response);
+        this.vacancyService.setVacancyDetail(response.data.vacancy);
+        this.modalService.openModal(VacancyModalComponent);
       });
   }
 

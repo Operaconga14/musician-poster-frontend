@@ -1,1 +1,70 @@
-<p>vacancy-modal works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">{{vacancyDetails.title}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalService.closeModal()"></button>
+</div>
+<div class="modal-body m-0 p-0">
+    <div class="border border-2 border-top-0 shadow-sm">
+    </div>
+
+    <div class="modal-body">
+        <!-- location -->
+        <div class="">
+            <!-- <p class="small m-0 text-center">Gig Title: </p> -->
+            <p class="small">{{vacancyDetails.type}}</p>
+        </div>
+        <!-- gig Genre -->
+        <div class="mt-0">
+            <!-- <p class="small mb-1 m-0">Description: </p> -->
+            <p class="small">{{vacancyDetails.description}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Date: </p>
+            <p class="small">{{vacancyDetails.date | date: dateTimeService.formatedDAte}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2">
+            <p class="small m-0">Location: </p>
+            <p class="small">{{vacancyDetails.location}}</p>
+        </div>
+
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Price: </p>
+            <p class="small">{{vacancyDetails.price}}</p>
+        </div>
+
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Instrument(s): </p>
+            <p class="small">{{vacancyDetails.instruments}}</p>
+        </div>
+
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Time: </p>
+            <p class="small">{{vacancyDetails.time | timeFormat}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Contact: </p>
+            <p class="small">{{vacancyDetails.contact}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Posted By: </p>
+            <p class="small">{{vacancyDetails.postedBy}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Date Posted: </p>
+            <p class="small">{{vacancyDetails.createdAt | date: dateTimeService.formatedDAte}}</p>
+        </div>
+        <!-- gig availability -->
+        <div class=" mt-2 d-flex justify-content-between">
+            <p class="small m-0">Date Updated: </p>
+            <p class="small">{{vacancyDetails.updatedAt | date: dateTimeService.formatedDAte}}</p>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalService.closeModal()">Close</button>
+</div>

@@ -62,3 +62,9 @@ export class PostVacanciesComponent {
       });
   }
 }
+
+// title: title,
+// description: description,
+// date: date,
+// type: type,
+// contact: contact,

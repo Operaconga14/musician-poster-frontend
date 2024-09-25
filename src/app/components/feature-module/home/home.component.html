@@ -69,13 +69,9 @@
             <div class="row">
                 <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let gig of newGigs">
                     <div class="card w-100">
-                        <div class="card-header p-0 m-0 rounded">
-                            <a [href]="gig.image">
-                                <img [src]="gig.imageUrl" *ngIf="gig.imageUrl" alt="" height="200" width="200"
-                                    class=" image-fluid rounded">
-                            </a>
-                        </div>
+
                         <div class="card-body">
+                            <h6>{{gig.title}}</h6>
                             <!-- location -->
                             <div class="">
                                 <!-- <p class="small m-0 text-center">Gig Title: </p> -->
@@ -158,13 +154,9 @@
             <div class="row">
                 <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let vacancy of newVacancies">
                     <div class="card w-100">
-                        <div class="card-header p-0 m-0 rounded">
-                            <a [href]="vacancy.image">
-                                <img [src]="vacancy.imageUrl" *ngIf="vacancy.imageUrl" alt="" height="200" width="200"
-                                    class=" image-fluid rounded">
-                            </a>
-                        </div>
                         <div class="card-body">
+
+                            <h6>{{vacancy.title}}</h6>
                             <!-- location -->
                             <div class="">
                                 <!-- <p class="small m-0 text-center">Gig Title: </p> -->
@@ -178,13 +170,25 @@
                             <!-- gig availability -->
                             <div class=" mt-2 d-flex justify-content-between">
                                 <p class="small m-0">Date: </p>
-                                <p class="small">{{vacancy.date | date: dateTimeService.formatedDAte}}</p>
+                                <p class="small">{{vacancy.date | date: dateTimeService.formatedDAte}}
+                                </p>
                             </div>
                             <!-- gig availability -->
                             <div class=" mt-2">
                                 <p class="small m-0">Location: </p>
                                 <p class="small">{{vacancy.location}}</p>
                             </div>
+
+                            <div class=" mt-2 d-flex justify-content-between">
+                                <p class="small m-0">Price: </p>
+                                <p class="small">{{vacancy.price}}</p>
+                            </div>
+
+                            <div class=" mt-2 d-flex justify-content-between">
+                                <p class="small m-0">Instrument(s): </p>
+                                <p class="small">{{vacancy.instruments}}</p>
+                            </div>
+
                             <!-- gig availability -->
                             <div class=" mt-2 d-flex justify-content-between">
                                 <p class="small m-0">Time: </p>
@@ -203,26 +207,29 @@
                             <!-- gig availability -->
                             <div class=" mt-2 d-flex justify-content-between">
                                 <p class="small m-0">Date Posted: </p>
-                                <p class="small">{{vacancy.createdAt | date: dateTimeService.formatedDAte}}</p>
+                                <p class="small">{{vacancy.createdAt | date:
+                                    dateTimeService.formatedDAte}}</p>
                             </div>
                             <!-- gig availability -->
                             <div class=" mt-2 d-flex justify-content-between">
                                 <p class="small m-0">Date Updated: </p>
-                                <p class="small">{{vacancy.updatedAt | date: dateTimeService.formatedDAte}}</p>
-                            </div>
-                            <div class="text-center mt-3">
-                                <button class="btn-dark btn text-white" (click)="getVacancyId(vacancy.id)">
-                                    Full Description
-                                </button>
+                                <p class="small">{{vacancy.updatedAt | date:
+                                    dateTimeService.formatedDAte}}</p>
                             </div>
                         </div>
                     </div>
+                    <div class="text-center mt-3">
+                        <button class="btn-dark btn text-white" (click)="getVacancyId(vacancy.id)">
+                            Full Description
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="mt-4 container text-center">
-                <a class="btn-dark btn text-white text-center" [routerLink]="[ '/vacancies']">More Vacancies</a>
-            </div>
         </div>
+        <div class="mt-4 container text-center">
+            <a class="btn-dark btn text-white text-center" [routerLink]="[ '/vacancies']">More Vacancies</a>
+        </div>
+
 </section>
 
 <!-- Gadgets Session -->

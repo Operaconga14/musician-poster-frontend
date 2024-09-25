@@ -367,7 +367,101 @@
                         <p>{{vacancy.title}}</p>
                         <p>{{vacancy.date | date: dateTimeService.formatedDAte}}</p>
                         <p>{{vacancy.deadline | date: dateTimeService.formatedDAte}}</p>
-                        <button class="btn-transparent btn border-0"><i class="bi bi-three-dots-vertical"></i></button>
+                        <!-- <button class="btn-transparent btn border-0"><i class="bi bi-three-dots-vertical"></i></button> -->
+                        <div ngbDropdown>
+                            <button class="btn-transparent btn border-0 btn-sm" ngbDropdownToggle><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                            <div ngbDropdownMenu>
+                                <button ngbDropdownItem (click)="getvacancyDetail(vacancy.id)">View</button>
+                                <!-- <button ngbDropdownItem>Edit</button> -->
+                                <div ngbDropdown>
+                                    <button class="ms-1 btn-outline-transparent btn border-0" ngbDropdownToggle>
+                                        Edit
+                                    </button>
+                                    <div ngbDropdownMenu class="p-0">
+                                        <div class="fullscreen-dropdown border-3 border rounded">
+                                            <form class="px-4 py-3" [formGroup]="updateVacancyForm" (ngSubmit)="updateVacancy(vacancy.id)"
+                                                >
+                                                <p class="h3 text-center fw-bold">Update Vacancy</p>
+                                                <div class="row mt-5">
+                                                    <!-- First colunm -->
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        <div class="form-group mb-2">
+                                                            <label for="type">Type</label>
+                                                            <input type="text" name="type"
+                                                                class="form-control form-rounded bg-transparent"
+                                                                formControlName="type">
+                                                        </div>
+
+                                                        <div class="form-group mb-2">
+                                                            <label for="contact">Contact</label>
+                                                            <input type="text" name="contact"
+                                                                class="form-control form-rounded bg-transparent"
+                                                                formControlName="contact">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <!-- Second colunm -->
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                                        <div class="form-group mb-2">
+                                                            <label for="instruments">Instrument(s)</label>
+                                                            <input type="text" name="instruments"
+                                                                class="form-control form-rounded bg-transparent"
+                                                                formControlName="instruments">
+                                                        </div>
+
+                                                        <div class="form-group mb-2">
+                                                            <label for="location">Location</label>
+                                                            <input type="text" name="location"
+                                                                class="form-control form-rounded bg-transparent"
+                                                                formControlName="location">
+                                                        </div>
+
+                                                        <div class="form-group mb-2">
+                                                            <label for="price">Price</label>
+                                                            <input type="text" name="price"
+                                                                class="form-control form-rounded bg-transparent"
+                                                                formControlName="price">
+                                                        </div>
+
+                                                        <div class="form-group mb-2">
+                                                            <label for="time">Time</label>
+                                                            <input type="time" name="time"
+                                                                class="form-control form-rounded bg-transparent"
+                                                                formControlName="time">
+                                                        </div>
+
+                                                        <!-- name field -->
+                                                        <div class="form-group mb-2">
+                                                            <label for="date">Date</label>
+                                                            <input type="date" name="date"
+                                                                class="form-control form-rounded bg-transparent"
+                                                                formControlName="date">
+                                                        </div>
+                                                    </div>
+                                                    <!-- name field -->
+                                                    <div class="form-group mb-2">
+                                                        <label for="description">Description</label>
+                                                        <textarea name="description" formControlName="description"
+                                                            class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class=" button mt-3 d-flex justify-content-between">
+                                                    <button class="form-rounded btn-secondary btn"
+                                                        type="submit">Update</button>
+                                                    <!-- <button class="form-rounded btn-outline-secondary btn"
+                                                        type="button">Cancel</button> -->
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <button ngbDropdownItem>Delete</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </li>
