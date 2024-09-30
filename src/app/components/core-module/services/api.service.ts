@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environments';
 export class ApiService {
 
 
-  server = environment.api_url;
+  server = environment.cloud_api_url;
   authenticationFailEvent = new EventEmitter;
   private http = inject(HttpClient);
 
