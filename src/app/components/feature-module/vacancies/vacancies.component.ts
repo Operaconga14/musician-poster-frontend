@@ -29,6 +29,8 @@ export class VacanciesComponent {
     this.vacancyService.allVacanciesList$.subscribe(vacancies => {
       this.allVacancies = vacancies
     })
+
+    // this.getVacancieshhtp()
   }
 
   async getVacancyDetails(id: any) {
@@ -38,5 +40,12 @@ export class VacanciesComponent {
         this.modalService.openModal(VacancyModalComponent);
       });
   }
+
+  // getVacancieshhtp() {
+  //   this.apiService.gettp('vacancy/vacancies')
+  //   .subscribe(vacant => {
+  //     console.log('Vacanciesshs', vacant);
+  //   })
+  // }
 
 }

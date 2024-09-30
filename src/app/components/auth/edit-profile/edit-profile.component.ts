@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../core-module/services/api.service';
 import { AppToastService } from '../../core-module/services/app-toast.service';
 import { AuthService } from '../../core-module/services/auth.service';
+import { CountryService } from '../../core-module/services/country.service';
 import { StateService } from '../../core-module/services/state.service';
 
 @Component({
@@ -20,12 +21,14 @@ export class EditProfileComponent {
   locations: any;
   updateForm: FormGroup;
   userPicture: any;
+  countryist: string[]= [];
 
   private locationService = inject(StateService);
   private apiService = inject(ApiService);
   private toastService = inject(AppToastService);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private countryService = inject(CountryService);
 
   constructor() {
     // +2348140153436
@@ -59,6 +62,11 @@ export class EditProfileComponent {
     //Add 'implements OnInit' to the class.
     this.locations = this.locationService.location;
     this.loadUserPicture();
+    this.countryService.getCountries().subscribe((countries) => {
+      this.countryist = countries.map(country => country.name.common)
+      .sort((a, b) => a.localeCompare(b));
+    });
+
   }
 
   loadUserPicture() {

@@ -36,7 +36,8 @@
         <div class="col-12 col-md-6">
             <label for="location" class="form-label">Location</label>
             <select class="form-select" name="location" id="location" formControlName="location">
-                <option *ngFor="let location of locations" value="{{location.value}}">{{location.name}}</option>
+                <option value="">Select Counry</option>
+                <option *ngFor="let country of countryist" value="{{country}}">{{country}}</option>
             </select>
         </div>
         <fieldset class="mt-5">

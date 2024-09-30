@@ -1,4 +1,5 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { EventEmitter, inject, Injectable } from '@angular/core';
 import axios, { AxiosResponse } from 'axios';
 import { environment } from '../../../environments/environments';
 
@@ -9,8 +10,9 @@ import { environment } from '../../../environments/environments';
 export class ApiService {
 
 
-  server = environment.cloud_api_url;
+  server = environment.api_url;
   authenticationFailEvent = new EventEmitter;
+  private http = inject(HttpClient);
 
 
   constructor() {
@@ -29,6 +31,15 @@ export class ApiService {
       }
     });
   }
+  // gettp(path: any): Observable<any> {
+  //   const token = localStorage.getItem('token')
+
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${token}`, // Add token to Authorization header
+  //     'Content-Type': 'application/json',
+  //   })
+  //   return this.http.get<any[]>(`${this.server}${path}`);
+  // }
 
   // http post method
   post(path: any, data: any): Promise<AxiosResponse<any>> {
@@ -44,6 +55,23 @@ export class ApiService {
     }
 
     return axios.post(`${this.server}${path}`, data, {
+      withCredentials: true, // Send cookies if needed
+      headers: headers
+    });
+  }
+
+  patch(path: any, data: any): Promise<AxiosResponse<any>> {
+    const token = localStorage.getItem('token');
+    const headers: any = {
+      'Authorization': `Bearer ${token}`, // Add token to Authorization header
+    };
+
+    if (!(data instanceof FormData)) {
+      headers['Content-Type'] = 'application/json';
+    }
+
+
+    return axios.patch(`${this.server}${path}`, data, {
       withCredentials: true, // Send cookies if needed
       headers: headers
     });
